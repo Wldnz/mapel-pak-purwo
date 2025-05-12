@@ -1,0 +1,625 @@
+CREATE TABLE books(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    title varchar(265) NOT NULL,
+    description varchar(265) NOT NULL,
+    publisher varchar(265) NOT NULL,
+    publication_year BIGINT NOT NULL,
+    edition_number INT default 1,
+    total_pages int NOT NULL,
+    category varchar(265) NOT NULL,
+    language varchar(255) DEFAULT 'indonesian',
+    receiver_date BIGINT NOT NULL,
+    status enum('available','borrowed','lost','damaged','under repair')
+);
+
+Klasifikasi Koleksi Perpustakaan
+Panduan Nomor Klasifikasi Koleksi di Perpustakaan
+ 
+
+ Thanks to https://library.sebi.ac.id/index.php?p=klasifikasi, telah memberikan klasifikasi
+
+000 Karya Umum
+100 Filsafat dan Psikologi
+200 Agama
+300 Ilmu-ilmu Sosial
+400 Bahasa
+500 Ilmu Pengetahuan Alam dan Matematika
+600 Teknologi dan Ilmu-ilmu Terapan
+700 Seni, Hiburan, dan Olahraga
+800 Sastra
+900 Geografi dan Sejarah
+
+000 Karya Umum
+000 - 009 (Ilmu Umum dan Komputer)
+010 - 019 (Bibliografi)
+020 - 029 (Perpustakaan dan Ilmu Informasi)
+030 - 039 (Ensiklopedia Umum)
+040 - 049 -
+050 - 059 (Terbitan Berseri/Berkala)
+060-  069 (Organisasi Umum dan Museum)
+070 - 079 (Jurnalisme, Media Berita, dan Penerbitan)
+080 - 089 (Kumpulan Karya Umum)
+090 - 099 (Manuskrip, Naskah-naskah dan Buku-buku Langka)
+
+100 Filsafat dan Psikologi
+100 - 109 (Filsafat)
+110 - 119 (Metafisika)
+120 - 129 (Epistemologi, Hukum Sebab Akibat, Kemanusiaan)
+130 - 139 (Fenomena Paranormal)
+140 - 149 (Pandangan Filsafat Khusus)
+150 - 159 (Psikologi)
+160 - 169 (Logika)
+170 - 179 (Etika dan Moral)
+180 - 189 (Filsafat Kuno)
+190 - 199 (Filsafat Barat Modern)
+
+200 Agama
+200 - 209 (Mitos Keagamaan, Teologi Sosial)
+210 - 219 (Filsafat & Teori Agama)
+220 - 229 (Alkitab)
+230 - 239 (Teologi Kristen)
+240 - 249 (Moral Kristen dan Teologi Kebaktian)
+250 - 259 (Orde-orde Keagamaan dan Gereja Setempat)
+260 - 269 (Teologi Sosial dan Eklesiastik Kristen)
+270 - 279 (Sejarah Gereja)
+280 - 289 (Denominasi dan Sekte-sekte Kristen)
+290 - 299 (Agama Selain Kristen)
+*297 Agama Islam (termasuk di dalamnya sosial, hukum, ekonomi, sejarah, dll.)
+
+300 Ilmu-ilmu Sosial
+300 - 309 (Sosiologi dan Antropologi)
+310 - 319 (Statistik Umum)
+320 - 329 (Ilmu Politik dan Pemerintahan)
+330 - 339 (Ekonomi)
+340 - 349 (Hukum)
+350 - 359 (Administrasi Negara dan Ilmu Kemiliteran)
+360 - 369 (Permasalahan dan Kesejahteraan Sosial)
+370 - 379 (Pendidikan)
+380 - 389 (Perdagangan, Komunikasi, Transportasi)
+390 - 399 (Adat Istiadat)
+
+400 Bahasa
+400 - 409 (Terminologi, Bilingual)
+410 - 419 (Linguistik, Bahasa Indonesia)
+420 - 429 (Bahasa Inggris)
+430 - 439 (Bahasa Jerman)
+440 - 449 (Bahasa Perancis)
+450 - 459 (Bahasa Italia)
+460 - 469 (Bahasa Spanyol dan Portugis)
+470 - 479 (Bahasa Latin)
+480 - 489 (Bahasa Yunani)
+490 - 499 (Bahasa-bahasa Lain)
+
+500 Ilmu Pengetahuan Alam dan Matematika
+500 - 509 (Aneka Ragam tentang Ilmu Pengetahuan Alam)
+510 - 519 (Matematika)
+520 - 529 (Astronomi)
+530 - 539 (Fisika)
+540 - 549 (Kimia)
+550 - 559 (Ilmu Bumi)
+560 - 569 (Paleontologi, Paleozoologi)
+570 - 579 (Biologi)
+580 - 589 (Ilmu Tumbuhan, Ilmu Tanaman)
+590 - 599 (Ilmu Hewan, Ilmu Binatang)
+
+600 Teknologi dan Ilmu-ilmu Terapan
+600 - 609 (Aneka Ragam Teknologi dan Ilmu Terapan)
+610 - 619 (Ilmu Kedokteran dan Ilmu Pengobatan)
+620 - 629 (Ilmu Teknik dan Ilmu yang Berkaitan)
+630 - 639 (Pertanian dan Teknologi yang Berkaitan)
+640 - 649 (Kesejahteraan Rumah Tangga dan Kehidupan Keluarga)
+650 - 659 (Manajemen dan Ilmu yang Berkaitan)
+660 - 669 (Teknologi Kimia dan Ilmu yang Berkaitan)
+670 - 679 (Pabrik-pabrik, Manufaktur)
+680 - 689 (Produksi untuk Keperluan Khusus)
+690 - 699 (Teknik Bangunan)
+
+700 Seni, Hiburan, dan Olahraga
+700 - 709 (Teori Kesenian)
+710 - 719  (Seni Perkotaan dan Pertamanan)
+720 - 729 (Arsitektur)
+730 - 739 (Seni Plastik dan Seni Patung)
+740 - 749 (Menggambar dan Seni Dekorasi)
+750 - 759 (Seni Lukis dan Lukisan)
+760 - 769 (Seni Grafika)
+770 - 779 (Seni Fotografi dan Foto)
+780 - 789 (Seni Musik)
+790 - 799 (Olah Raga dan Seni Pertunjukan)
+
+800 Sastra
+800 - 809 (Teori Kesusastraan dan Retorika)
+810 - 819 (Kesusastraan Indonesia)
+820 - 829 (Kesusastraan Inggris)
+830 - 839 (Kesusastraan Jerman)
+840 - 849 (Kesusastraan Perancis)
+850 - 859 (Kesusastraan Italia)
+860 - 869 (Kesusastraan Spanyol dan Portugis)
+870 - 879 (Kesusastraan Latin)
+880 - 889 (Kesusastraan Yunani Kuno)
+890 - 899 (Kesusastraan Lain-lain)
+
+900 Geografi dan Sejarah
+900 - 909 (Teori Ilmu Sejarah)
+910 - 919 (Geografi dan Perjalanan)
+920 - 929 (Biografi dan Silsilah)
+930 - 939 (Sejarah Dunia Kuno sampai dengan Tahun 499)
+940 - 949 (Sejarah Umum Eropa)
+950 - 959 (Sejarah Umum Asia)
+960 - 969 (Sejarah Umum Afrika)
+970 - 979 (Sejarah Umum Amerika Utara)
+980 - 989 (Sejarah Umum Amerika Selatan/Amerika Latin)
+990 - 999 (Sejarah Umum Bagian Dunia Lainnya)
+
+
+
+
+
+================== 
+
+INSERT INTO classification_numbers
+    VALUES 
+        ('000', 'Ilmu Umum, Pengetahuan, dan Komputer', active),
+        ('001', 'Pengetahuan', active),
+        ('002', 'Buku', active),
+        ('003','Sistem', active),
+        ('004','Pengolahan Data, Ilmu Komputer', active),
+        ('005','Pemograman Komputer, Data, Struktur Data', active),
+        ('006','Metode Komputer Khusus', active),
+        ('007','Tidak Digunakan Lagi','inactive'),
+        ('008','Tidak Digunakan Lagi','inactive'),
+        ('009','Tidak Digunakan Lagi','inactive'),
+        ('100','Filsafat dan Psikologi','active'),
+        ('102','Aneka Ragam Filsafat','active'),
+        ('103','Kamus dan Ensiklopedia Filosofi','active'),
+        ('104','Topik Khusus dalam Filsafat','active'),
+        ('105','Publikasi Serial Filosofi','active'),
+        ('106','Organisasi Filosofi','active'),
+        ('107','Pendidikan dan Penelitian dalam Filsafat','active'),
+        ('108','Kelompok Orang dalam Filsafat','active'),
+        ('109','Sejarah Filsafat','active');
+
+
+
+INSERT INTO classification_numbers
+    VALUES 
+        ('000', 'Ilmu Umum, Pengetahuan, dan Komputer', 'active'),
+        ('001', 'Pengetahuan', 'active'),
+        ('002', 'Buku', 'active'),
+        ('003', 'Sistem', 'active'),
+        ('004', 'Pengolahan Data, Ilmu Komputer', 'active'),
+        ('005', 'Pemrograman Komputer, Data, Struktur Data', 'active'),
+        ('006', 'Metode Komputer Khusus', 'active'),
+        ('007', 'Tidak Digunakan Lagi', 'inactive'),
+        ('008', 'Tidak Digunakan Lagi', 'inactive'),
+        ('009', 'Tidak Digunakan Lagi', 'inactive'),
+        ('100', 'Filsafat dan Psikologi', 'active'),
+        ('101', 'Teori Filsafat', 'active'),
+        ('102', 'Aneka Ragam Filsafat', 'active'),
+        ('103', 'Kamus dan Ensiklopedia Filosofi', 'active'),
+        ('104', 'Topik Khusus dalam Filsafat', 'active'),
+        ('105', 'Publikasi Serial Filosofi', 'active'),
+        ('106', 'Organisasi Filosofi', 'active'),
+        ('107', 'Pendidikan dan Penelitian dalam Filsafat', 'active'),
+        ('108', 'Kelompok Orang dalam Filsafat', 'active'),
+        ('109', 'Sejarah Filsafat', 'active'),
+        ('110', 'Metafisika', 'active'),
+        ('111', 'Ontologi', 'active'),
+        ('113', 'Kosmologi', 'active'),
+        ('120', 'Epistemologi, Sebab Akibat, Tujuan', 'active'),
+        ('121', 'Epistemologi (Teori Pengetahuan)', 'active'),
+        ('122', 'Sebab Akibat', 'active'),
+        ('123', 'Determinisme dan Indeterminisme', 'active'),
+        ('124', 'Teleologi', 'active'),
+        ('126', 'Diri', 'active'),
+        ('128', 'Umat Manusia', 'active'),
+        ('129', 'Asal dan Takdir Jiwa Individu', 'active'),
+        ('130', 'Fenomena Paranormal dan Okultisme', 'active'),
+        ('133', 'Parapsikologi dan Okultisme', 'active'),
+        ('135', 'Mimpi dan Misteri', 'active'),
+        ('137', 'Grafologi', 'active'),
+        ('138', 'Fisiognomi', 'active'),
+        ('139', 'Frenologi', 'active'),
+        ('140', 'Pandangan Filosofis Spesifik', 'active'),
+        ('141', 'Idealisme dan Fenomenalisme', 'active'),
+        ('142', 'Materialisme dan Mekanisme', 'active'),
+        ('143', 'Spiritualisme', 'active'),
+        ('144', 'Humanisme dan Topik Terkait', 'active'),
+        ('145', 'Sensasionalisme', 'active'),
+        ('146', 'Naturalisme', 'active'),
+        ('147', 'Atomisme', 'active'),
+        ('149', 'Sistem dan Doktrin Filosofis Lain', 'active'),
+        ('150', 'Psikologi', 'active'),
+        ('151', 'Proses Mental', 'active'),
+        ('152', 'Persepsi, Gerakan, Emosi, Dorongan', 'active'),
+        ('153', 'Kognisi', 'active'),
+        ('154', 'Proses Subsadar dan Alterasi', 'active'),
+        ('155', 'Psikologi Diferensial dan Perkembangan', 'active'),
+        ('156', 'Psikologi Komparatif dan Eksperimental', 'active'),
+        ('158', 'Psikologi Terapan', 'active'),
+        ('160', 'Logika', 'active'),
+        ('161', 'Induksi', 'active'),
+        ('162', 'Deduksi', 'active'),
+        ('165', 'Kekeliruan', 'active'),
+        ('166', 'Silogisme', 'active'),
+        ('168', 'Argumen dan Persuasi', 'active'),
+        ('170', 'Etika (Filsafat Moral)', 'active'),
+        ('171', 'Sistem Etika', 'active'),
+        ('172', 'Etika Politik', 'active'),
+        ('173', 'Etika Keluarga', 'active'),
+        ('174', 'Etika Pekerjaan', 'active'),
+        ('175', 'Etika Rekreasi', 'active'),
+        ('176', 'Etika Seks dan Reproduksi', 'active'),
+        ('177', 'Etika Hubungan Sosial', 'active'),
+        ('178', 'Etika Konsumsi', 'active'),
+        ('179', 'Topik Etika Lain', 'active'),
+        ('180', 'Filsafat Kuno, Abad Pertengahan, Timur', 'active'),
+        ('181', 'Filsafat Timur', 'active'),
+        ('182', 'Filsuf Pra-Sokrates', 'active'),
+        ('183', 'Filsafat Sokrates dan Plato', 'active'),
+        ('184', 'Filsafat Aristoteles', 'active'),
+        ('185', 'Sekolah Filosofis Setelah Aristoteles', 'active'),
+        ('186', 'Skeptisisme dan Ekletisisme', 'active'),
+        ('187', 'Filsafat Epikuros', 'active'),
+        ('188', 'Filsafat Stoik', 'active'),
+        ('189', 'Filsafat Abad Pertengahan', 'active'),
+        ('190', 'Filsafat Modern Barat', 'active'),
+        ('191', 'Filsafat Amerika Utara', 'active'),
+        ('192', 'Filsafat Inggris', 'active'),
+        ('193', 'Filsafat Jerman dan Austria', 'active'),
+        ('194', 'Filsafat Prancis', 'active'),
+        ('195', 'Filsafat Italia', 'active'),
+        ('196', 'Filsafat Spanyol dan Portugis', 'active'),
+        ('197', 'Filsafat Rusia', 'active'),
+        ('198', 'Filsafat Skandinavia', 'active'),
+        ('199', 'Filsafat di Tempat Lain', 'active'),
+        ('200', 'Agama', 'active'),
+        ('201', 'Filsafat dan Teori Agama', 'active'),
+        ('202', 'Aneka Ragam Agama', 'active'),
+        ('203', 'Kamus dan Ensiklopedia Agama', 'active'),
+        ('204', 'Topik Khusus dalam Agama', 'active'),
+        ('205', 'Publikasi Serial Agama', 'active'),
+        ('206', 'Organisasi Agama', 'active'),
+        ('207', 'Pendidikan dan Penelitian dalam Agama', 'active'),
+        ('208', 'Kelompok Orang dalam Agama', 'active'),
+        ('209', 'Sejarah Agama', 'active'),
+        ('210', 'Agama Alam', 'active'),
+        ('220', 'Alkitab', 'active'),
+        ('230', 'Teologi Kristen', 'active'),
+        ('240', 'Praktik dan Ibadah Kristen', 'active'),
+        ('250', 'Tata Gereja dan Pekerjaan Pastoral Kristen', 'active'),
+        ('260', 'Organisasi dan Administrasi Kristen', 'active'),
+        ('270', 'Sejarah Gereja Kristen', 'active'),
+        ('280', 'Denominasi dan Sekte Kristen', 'active'),
+        ('290', 'Agama Lain', 'active'),
+        ('291', 'Agama Komparatif dan Fenomena Agama', 'active'),
+        ('292', 'Agama Yunani dan Romawi', 'active'),
+        ('293', 'Agama Jermanik', 'active'),
+        ('294', 'Agama India', 'active'),
+        ('295', 'Zoroastrianisme', 'active'),
+        ('296', 'Yudaisme', 'active'),
+        ('297', 'Islam', 'active'),
+        ('299', 'Agama Lain-lain', 'active'),
+        ('300', 'Ilmu-ilmu Sosial', 'active'),
+        ('301', 'Sosiologi dan Antropologi', 'active'),
+        ('302', 'Proses Sosial', 'active'),
+        ('303', 'Proses Pemerintahan', 'active'),
+        ('304', 'Faktor-faktor yang Mempengaruhi Perilaku Sosial', 'active'),
+        ('305', 'Kelompok Sosial', 'active'),
+        ('306', 'Kebudayaan dan Lembaga', 'active'),
+        ('307', 'Komunitas', 'active'),
+        ('308', 'Tidak digunakan lagi', 'inactive'),
+        ('309', 'Sejarah Ilmu-ilmu Sosial', 'active'),
+        ('310', 'Statistik Umum', 'active'),
+        ('320', 'Ilmu Politik', 'active'),
+        ('330', 'Ekonomi', 'active'),
+        ('340', 'Hukum', 'active'),
+        ('350', 'Administrasi Publik dan Militer', 'active'),
+        ('360', 'Masalah dan Pelayanan Sosial', 'active'),
+        ('370', 'Pendidikan', 'active'),
+        ('380', 'Perdagangan, Komunikasi, Transportasi', 'active'),
+        ('390', 'Adat Istiadat, Etiket, Cerita Rakyat', 'active'),
+        ('400', 'Bahasa', 'active'),
+        ('401', 'Filsafat dan Teori Bahasa', 'active'),
+        ('402', 'Aneka Ragam Bahasa', 'active'),
+        ('403', 'Kamus Bahasa', 'active'),
+        ('404', 'Topik Khusus dalam Bahasa', 'active'),
+        ('405', 'Publikasi Serial Bahasa', 'active'),
+        ('406', 'Organisasi Bahasa', 'active'),
+        ('407', 'Pendidikan dan Penelitian dalam Bahasa', 'active'),
+        ('408', 'Kelompok Orang dalam Bahasa', 'active'),
+        ('409', 'Sejarah Bahasa', 'active'),
+        ('410', 'Linguistik', 'active'),
+        ('420', 'Bahasa Inggris', 'active'),
+        ('430', 'Bahasa Jerman', 'active'),
+        ('440', 'Bahasa Prancis', 'active'),
+        ('450', 'Bahasa Italia', 'active'),
+        ('460', 'Bahasa Spanyol dan Portugis', 'active'),
+        ('470', 'Bahasa Latin', 'active'),
+        ('480', 'Bahasa Yunani Klasik', 'active'),
+        ('490', 'Bahasa Lain', 'active'),
+        ('500', 'Ilmu Pengetahuan Alam dan Matematika', 'active'),
+        ('501', 'Filsafat dan Teori Ilmu Pengetahuan Alam', 'active'),
+        ('502', 'Aneka Ragam Ilmu Pengetahuan Alam', 'active'),
+        ('503', 'Kamus dan Ensiklopedia Ilmu Pengetahuan Alam', 'active'),
+        ('504', 'Topik Khusus dalam Ilmu Pengetahuan Alam', 'active'),
+        ('505', 'Publikasi Serial Ilmu Pengetahuan Alam', 'active'),
+        ('506', 'Organisasi Ilmu Pengetahuan Alam', 'active'),
+        ('507', 'Pendidikan dan Penelitian dalam Ilmu Pengetahuan Alam', 'active'),
+        ('508', 'Sejarah dan Deskripsi Alam', 'active'),
+        ('509', 'Sejarah Ilmu Pengetahuan Alam', 'active'),
+        ('510', 'Matematika', 'active'),
+        ('520', 'Astronomi', 'active'),
+        ('530', 'Fisika', 'active'),
+        ('540', 'Kimia', 'active'),
+        ('550', 'Ilmu Bumi dan Ilmu Lain', 'active'),
+        ('560', 'Paleontologi, Paleozoologi', 'active'),
+        ('570', 'Ilmu Hayati', 'active'),
+        ('580', 'Ilmu Tumbuhan (Botani)', 'active'),
+        ('590', 'Ilmu Hewan (Zoologi)', 'active'),
+        ('600', 'Teknologi dan Ilmu-ilmu Terapan', 'active'),
+        ('601', 'Filsafat dan Teori Teknologi', 'active'),
+        ('602', 'Aneka Ragam Teknologi', 'active'),
+        ('603', 'Kamus dan Ensiklopedia Teknologi', 'active'),
+        ('604', 'Topik Khusus dalam Teknologi', 'active'),
+        ('605', 'Publikasi Serial Teknologi', 'active'),
+        ('606', 'Organisasi Teknologi', 'active'),
+        ('607', 'Pendidikan dan Penelitian dalam Teknologi', 'active'),
+        ('608', 'Invensi dan Paten', 'active'),
+        ('609', 'Sejarah Teknologi', 'active'),
+        ('610', 'Ilmu Kedokteran dan Ilmu Pengobatan', 'active'),
+        ('620', 'Teknik', 'active'),
+        ('630', 'Pertanian dan Teknologi yang Berkaitan', 'active'),
+        ('640', 'Ekonomi Rumah Tangga dan Kehidupan Keluarga', 'active'),
+        ('650', 'Manajemen dan Layanan Bisnis', 'active'),
+        ('660', 'Teknik Kimia dan Proses Terkait', 'active'),
+        ('670', 'Manufaktur', 'active'),
+        ('680', 'Manufaktur untuk Penggunaan Spesifik', 'active'),
+        ('690', 'Konstruksi Bangunan', 'active'),
+        ('700', 'Seni, Hiburan, dan Olahraga', 'active'),
+        ('701', 'Filsafat dan Teori Seni Rupa', 'active'),
+        ('702', 'Aneka Ragam Seni Rupa', 'active'),
+        ('703', 'Kamus dan Ensiklopedia Seni Rupa', 'active'),
+        ('704', 'Topik Khusus dalam Seni Rupa', 'active'),
+        ('705', 'Publikasi Serial Seni Rupa', 'active'),
+        ('706', 'Organisasi Seni Rupa', 'active'),
+        ('707', 'Pendidikan dan Penelitian dalam Seni Rupa', 'active'),
+        ('708', 'Galeri, Museum, Koleksi Pribadi', 'active'),
+        ('709', 'Sejarah Seni Rupa', 'active'),
+        ('710', 'Perencanaan Lanskap dan Arsitektur', 'active'),
+        ('720', 'Arsitektur', 'active'),
+        ('730', 'Seni Patung, Seni Plastik', 'active'),
+        ('740', 'Menggambar dan Seni Dekoratif', 'active'),
+        ('750', 'Melukis dan Lukisan', 'active'),
+        ('760', 'Seni Grafis (Grafir)', 'active'),
+        ('770', 'Fotografi', 'active'),
+        ('780', 'Musik', 'active'),
+        ('790', 'Hiburan, Permainan, Olahraga', 'active'),
+        ('800', 'Sastra dan Retorika', 'active'),
+        ('801', 'Teori Sastra dan Kritik', 'active'),
+        ('802', 'Aneka Ragam Sastra', 'active'),
+        ('803', 'Kamus dan Ensiklopedia Sastra', 'active'),
+        ('804', 'Topik Khusus dalam Sastra', 'active'),
+        ('805', 'Publikasi Serial Sastra', 'active'),
+        ('806', 'Organisasi Sastra', 'active'),
+        ('807', 'Pendidikan dan Penelitian dalam Sastra', 'active'),
+        ('808', 'Retorika', 'active'),
+        ('809', 'Sejarah Sastra', 'active'),
+        ('810', 'Sastra Amerika', 'active'),
+        ('820', 'Sastra Inggris', 'active'),
+        ('830', 'Sastra Jerman', 'active'),
+        ('840', 'Sastra Prancis', 'active'),
+        ('850', 'Sastra Italia', 'active'),
+        ('860', 'Sastra Spanyol dan Portugis', 'active'),
+        ('870', 'Sastra Latin', 'active'),
+        ('880', 'Sastra Yunani Klasik', 'active'),
+        ('890', 'Sastra Bahasa Lain', 'active'),
+        ('900', 'Geografi dan Sejarah', 'active'),
+        ('901', 'Filsafat dan Teori Sejarah dan Geografi', 'active'),
+        ('902', 'Aneka Ragam Sejarah dan Geografi', 'active'),
+        ('903', 'Kamus dan Ensiklopedia Sejarah dan Geografi', 'active'),
+        ('904', 'Topik Khusus dalam Sejarah dan Geografi', 'active'),
+        ('905', 'Publikasi Serial Sejarah dan Geografi', 'active'),
+        ('906', 'Organisasi Sejarah dan Geografi', 'active'),
+        ('907', 'Pendidikan dan Penelitian dalam Sejarah dan Geografi', 'active'),
+        ('908', 'Sejarah dan Deskripsi Wilayah Umum', 'active'),
+        ('909', 'Sejarah Dunia', 'active'),
+        ('910', 'Geografi dan Perjalanan', 'active'),
+        ('911', 'Geografi Sejarah', 'active'),
+        ('912', 'Atlas', 'active'),
+        ('913', 'Geografi dan Arkeologi Dunia Kuno', 'active'),
+        ('914', 'Geografi dan Perjalanan Eropa', 'active'),
+        ('915', 'Geografi dan Perjalanan Asia', 'active'),
+        ('916', 'Geografi dan Perjalanan Afrika', 'active'),
+        ('917', 'Geografi dan Perjalanan Amerika Utara', 'active'),
+        ('918', 'Geografi dan Perjalanan Amerika Selatan', 'active'),
+        ('919', 'Geografi dan Perjalanan Wilayah Lain', 'active'),
+        ('920', 'Biografi, Genealogi, Lambang Kebangsawanan', 'active'),
+        ('921', 'Biografi Filsuf dan Psikolog', 'active'),
+        ('922', 'Biografi Tokoh Agama', 'active'),
+        ('923', 'Biografi Ilmuwan Sosial', 'active'),
+        ('924', 'Biografi Ahli Bahasa', 'active'),
+        ('925', 'Biografi Ilmuwan Alam dan Matematikawan', 'active'),
+        ('926', 'Biografi Teknolog', 'active'),
+        ('927', 'Biografi Seniman dan Olahragawan', 'active'),
+        ('928', 'Biografi Penulis Sastra', 'active'),
+        ('929', 'Biografi Sejarawan dan Geografer', 'active'),
+        ('930', 'Sejarah Dunia Kuno hingga ca. 499', 'active'),
+        ('931', 'Sejarah Tiongkok Kuno', 'active'),
+        ('932', 'Sejarah Mesir Kuno', 'active'),
+        ('933', 'Sejarah Palestina Kuno', 'active'),
+        ('934', 'Sejarah India Kuno', 'active'),
+        ('935', 'Sejarah Mesopotamia dan Dataran Tinggi Iran', 'active'),
+        ('936', 'Sejarah Eropa Utara dan Barat Kuno', 'active'),
+        ('937', 'Sejarah Italia dan Roma Kuno', 'active'),
+        ('938', 'Sejarah Yunani Kuno', 'active'),
+        ('939', 'Sejarah Wilayah Lain Kuno', 'active'),
+        ('940', 'Sejarah Eropa', 'active'),
+        ('941', 'Sejarah Kepulauan Inggris', 'active'),
+        ('942', 'Sejarah Inggris', 'active'),
+        ('943', 'Sejarah Jerman', 'active'),
+        ('944', 'Sejarah Prancis', 'active'),
+        ('945', 'Sejarah Italia', 'active'),
+        ('946', 'Sejarah Spanyol dan Portugal', 'active'),
+        ('947', 'Sejarah Eropa Timur, Rusia', 'active'),
+        ('948', 'Sejarah Skandinavia', 'active'),
+        ('949', 'Sejarah Wilayah Lain Eropa', 'active'),
+        ('950', 'Sejarah Asia', 'active'),
+        ('951', 'Sejarah Tiongkok dan Wilayah Terkait', 'active'),
+        ('952', 'Sejarah Jepang', 'active'),
+        ('953', 'Sejarah Semenanjung Arab dan Wilayah Terkait', 'active'),
+        ('954', 'Sejarah Anak Benua India', 'active'),
+        ('955', 'Sejarah Iran', 'active'),
+        ('956', 'Sejarah Timur Tengah (Asia Barat)', 'active'),
+        ('957', 'Sejarah Siberia (Rusia Asia)', 'active'),
+        ('958', 'Sejarah Asia Tengah', 'active'),
+        ('959', 'Sejarah Asia Tenggara', 'active'),
+        ('960', 'Sejarah Afrika', 'active'),
+        ('961', 'Sejarah Tunisia dan Libya', 'active'),
+        ('962', 'Sejarah Mesir dan Sudan', 'active'),
+        ('963', 'Sejarah Ethiopia dan Eritrea', 'active'),
+        ('964', 'Sejarah Maroko', 'active'),
+        ('965', 'Sejarah Aljazair', 'active'),
+        ('966', 'Sejarah Afrika Barat Laut', 'active'),
+        ('967', 'Sejarah Afrika Tengah Timur', 'active'),
+        ('968', 'Sejarah Afrika Selatan', 'active'),
+        ('969', 'Sejarah Pulau-pulau Samudra Hindia Selatan', 'active'),
+        ('970', 'Sejarah Amerika Utara', 'active'),
+        ('971', 'Sejarah Kanada', 'active'),
+        ('972', 'Sejarah Meksiko dan Amerika Tengah', 'active'),
+        ('973', 'Sejarah Amerika Serikat', 'active'),
+        ('974', 'Sejarah Amerika Serikat Bagian Timur Laut', 'active'),
+        ('975', 'Sejarah Amerika Serikat Bagian Tenggara', 'active'),
+        ('976', 'Sejarah Amerika Serikat Bagian Selatan Tengah', 'active'),
+        ('977', 'Sejarah Amerika Serikat Bagian Utara Tengah', 'active'),
+        ('978', 'Sejarah Amerika Serikat Bagian Barat', 'active'),
+        ('979', 'Sejarah Amerika Serikat Bagian Barat Jauh', 'active'),
+        ('980', 'Sejarah Amerika Selatan', 'active'),
+        ('981', 'Sejarah Brasil', 'active'),
+        ('982', 'Sejarah Argentina', 'active'),
+        ('983', 'Sejarah Cile', 'active'),
+        ('984', 'Sejarah Bolivia', 'active'),
+        ('985', 'Sejarah Peru', 'active'),
+        ('986', 'Sejarah Kolombia dan Ekuador', 'active'),
+        ('987', 'Sejarah Venezuela', 'active'),
+        ('988', 'Sejarah Guyana, Suriname, Guyana Prancis', 'active'),
+        ('989', 'Sejarah Paraguay dan Uruguay', 'active'),
+        ('990', 'Sejarah Wilayah Lain', 'active'),
+        ('991', 'Sejarah Asia Tenggara dan Indonesia', 'active'),
+        ('992', 'Sejarah Malaysia dan Brunei', 'active'),
+        ('993', 'Sejarah Selandia Baru dan Pasifik Selatan', 'active'),
+        ('994', 'Sejarah Australia', 'active'),
+        ('995', 'Sejarah Nugini', 'active'),
+        ('996', 'Sejarah Kepulauan Pasifik Lain', 'active'),
+        ('997', 'Sejarah Pulau-pulau Atlantik Selatan', 'active'),
+        ('998', 'Sejarah Kutub Utara dan Selatan', 'active'),
+        ('999', 'Sejarah di Luar Bumi', 'active');
+
+000 Ilmu Umum, Pengetahuan, dan Komputer
+    001 Pengetahuan
+    002 Buku
+    003 Sistem
+    004 Pengolahan Data, Ilmu Komputer
+    005 Pemrograman Komputer, Data, Struktur Data
+    006 Metode Komputer Khusus
+    007 Tidak digunakan lagi
+    008 Tidak digunakan lagi
+    009 Tidak digunakan lagi
+
+100 Filsafat dan Psikologi
+    101 Teori Filsafat
+    102 Aneka Ragam Filsafat
+    103 Kamus dan Ensiklopedia Filosofi
+    104 Topik Khusus dalam Filsafat
+    105 Publikasi Serial Filosofi
+    106 Organisasi Filosofi
+    107 Pendidikan dan Penelitian dalam Filsafat
+    108 Kelompok Orang dalam Filsafat
+    109 Sejarah Filsafat
+
+200 Agama
+    201 Filsafat dan Teori Agama
+    202 Aneka Ragam Agama
+    203 Kamus dan Ensiklopedia Agama
+    204 Topik Khusus dalam Agama
+    205 Publikasi Serial Agama
+    206 Organisasi Agama
+    207 Pendidikan dan Penelitian dalam Agama
+    208 Kelompok Orang dalam Agama
+    209 Sejarah Agama
+
+300 Ilmu-ilmu Sosial
+    301 Sosiologi dan Antropologi
+    302 Proses Sosial
+    303 Proses Pemerintahan
+    304 Faktor-faktor yang Mempengaruhi Perilaku Sosial
+    305 Kelompok Sosial
+    306 Kebudayaan dan Lembaga
+    307 Komunitas
+    308 Tidak digunakan lagi
+    309 Sejarah Ilmu-ilmu Sosial
+
+400 Bahasa
+    401 Filsafat dan Teori Bahasa
+    402 Aneka Ragam Bahasa
+    403 Kamus Bahasa
+    404 Topik Khusus dalam Bahasa
+    405 Publikasi Serial Bahasa
+    406 Organisasi Bahasa
+    407 Pendidikan dan Penelitian dalam Bahasa
+    408 Kelompok Orang dalam Bahasa
+    409 Sejarah Bahasa
+
+500 Ilmu Pengetahuan Alam dan Matematika
+    501 Filsafat dan Teori Ilmu Pengetahuan Alam
+    502 Aneka Ragam Ilmu Pengetahuan Alam
+    503 Kamus dan Ensiklopedia Ilmu Pengetahuan Alam
+    504 Topik Khusus dalam Ilmu Pengetahuan Alam
+    505 Publikasi Serial Ilmu Pengetahuan Alam
+    506 Organisasi Ilmu Pengetahuan Alam
+    507 Pendidikan dan Penelitian dalam Ilmu Pengetahuan Alam
+    508 Sejarah dan Deskripsi Alam
+    509 Sejarah Ilmu Pengetahuan Alam
+
+600 Teknologi dan Ilmu-ilmu Terapan
+    601 Filsafat dan Teori Teknologi
+    602 Aneka Ragam Teknologi
+    603 Kamus dan Ensiklopedia Teknologi
+    604 Topik Khusus dalam Teknologi
+    605 Publikasi Serial Teknologi
+    606 Organisasi Teknologi
+    607 Pendidikan dan Penelitian dalam Teknologi
+    608 Invensi dan Paten
+    609 Sejarah Teknologi
+
+700 Seni, Hiburan, dan Olahraga
+    701 Filsafat dan Teori Seni Rupa
+    702 Aneka Ragam Seni Rupa
+    703 Kamus dan Ensiklopedia Seni Rupa
+    704 Topik Khusus dalam Seni Rupa
+    705 Publikasi Serial Seni Rupa
+    706 Organisasi Seni Rupa
+    707 Pendidikan dan Penelitian dalam Seni Rupa
+    708 Galeri, Museum, Koleksi Pribadi
+    709 Sejarah Seni Rupa
+
+800 Sastra dan Retorika
+    801 Teori Sastra dan Kritik
+    802 Aneka Ragam Sastra
+    803 Kamus dan Ensiklopedia Sastra
+    804 Topik Khusus dalam Sastra
+    805 Publikasi Serial Sastra
+    806 Organisasi Sastra
+    807 Pendidikan dan Penelitian dalam Sastra
+    808 Retorika
+    809 Sejarah Sastra
+
+900 Geografi dan Sejarah
+    901 Filsafat dan Teori Sejarah dan Geografi
+    902 Aneka Ragam Sejarah dan Geografi
+    903 Kamus dan Ensiklopedia Sejarah dan Geografi
+    904 Topik Khusus dalam Sejarah dan Geografi
+    905 Publikasi Serial Sejarah dan Geografi
+    906 Organisasi Sejarah dan Geografi
+    907 Pendidikan dan Penelitian dalam Sejarah dan Geografi
+    908 Sejarah dan Deskripsi Wilayah Umum
+    909 Sejarah Dunia
