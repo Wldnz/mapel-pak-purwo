@@ -623,3 +623,25 @@ INSERT INTO classification_numbers
     907 Pendidikan dan Penelitian dalam Sejarah dan Geografi
     908 Sejarah dan Deskripsi Wilayah Umum
     909 Sejarah Dunia
+
+     CREATE TABLE return_book(
+        id int primary key auto_increment,
+        id_user int not null,
+        id_book int not null,
+        return_condition enum('good','normal','damaged') not null,
+        return_at bigint not null,
+        foreign key (id_user) references users(id),
+        foreign key (id_book) references books(id)
+    );
+
+    CREATE TABLE borrowed_books(
+        id INT PRIMARY KEY AUTO_INCREMENT,
+        id_user int not null,
+        id_book int not null,
+        book_condition enum('good','damaged','under repair') NOT NULL,
+        borrowed_at BIGINT NOT NULL,
+        return_condition enum('good','damaged','lost'),
+        return_at BIGINT,
+        FOREIGN KEY(id_user) references users(id),
+        FOREIGN KEY(id_book) references books(id)
+    );
