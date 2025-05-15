@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Welcome to CodeIgniter 4!</title>
+    <title>Selamat Datang Di Perpustakaan Xyz</title>
     <meta name="description" content="The small framework with powerful features">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="shortcut icon" type="image/png" href="/favicon.ico">
@@ -225,9 +225,9 @@
 
     <div class="heroe">
 
-        <h1>Welcome to CodeIgniter <?= CodeIgniter\CodeIgniter::CI_VERSION ?></h1>
+        <h1>Selamat Datang, Di Perpustakaan Xyz</h1>
 
-        <h2>The small framework with powerful features</h2>
+        <p>Perpustakaan Xyz adalah perpustakaan yang menyediakan buku buku yang berguna dan bermanfaat untuk dibaca,<br>silahkan <a href="login">login</a> untuk mendapatkan hak akses sebagai anggota kami.</p>    
 
     </div>
 
@@ -305,8 +305,7 @@
 
     <div class="copyrights">
 
-        <p>&copy; <?= date('Y') ?> CodeIgniter Foundation. CodeIgniter is open source project released under the MIT
-            open source licence.</p>
+        <p>&copy; <?= date('Y') ?> Wldnz's abc</p>
 
     </div>
 

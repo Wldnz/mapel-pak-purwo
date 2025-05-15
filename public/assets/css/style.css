@@ -1,0 +1,43 @@
+
+:root{
+    --warna-1 : #080EC7;
+    --warna-2 : #5E63E4;
+    --warna-3 : #A5A7F9;
+    --warna-4 : #191B65;
+    --warna-5 : #484A8A;
+    --warna-6 : #8283A7;
+    --warna-7 : #070FFF;
+    --warna-8 : #050A9B;
+    --warna-9 : #050864;
+    --warna-gelap : #19181D; 
+}
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+
+    font-family: "Poppins", sans-serif;
+    font-weight: 400;
+    font-style: normal;
+
+}
+
+a{
+    text-decoration: none;
+    /* font-size: 12px; */
+}
+
+.btn{
+    padding: 8px;
+    border-radius: 5px;
+    border: none;
+    font-size: 14px;
+    cursor: pointer;
+    color: white;
+    background-color: var(--warna-5);
+}
+
+.btn:hover{
+    background-color: var(--warna-6);
+}
