@@ -1,21 +1,46 @@
 
 body{
     display: flex;
+    min-width: 300px;
+}
 
+
+.left,
+.right{
+    min-height: 100dvh;
 }
 
 .left{
-    width: 45%;
+    width: 40%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+}
+
+.header-login{
+    width: 80%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+}
+
+.header-login > img{
+    height: 60px;
+}
+
+.header-text{
+    width: 80%;
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: start;
-    padding: 10px;
+    font-size: 12px;
 }
 
-.left > img{
-    height: 50px;
-}
+
 
 form,
 .text-field{
@@ -38,16 +63,34 @@ form{
     /* gap: 0px; */
 }
 
-text-field > label{
+.wajib{
+    width: max-content;
+    position: relative;
     font-size: 14px;
+}
+
+.wajib::after{
+    content: "*";
+    position: absolute;
+    top: -1.5px;
+    right:  -7px;
+    color: red;
+    font-weight: bold;
 }
 
 .text-bantuan{
     justify-content: space-between;
-    font-size: 12px;
+    font-size: 12.5px;
+    flex-wrap: wrap;
+}
+
+.bantuan{
+    width: 100%;
+    justify-content: end;
 }
 
 input{
+    /* width: 100%; */
     height: 40px;
     padding: 5px;
     border: none;
@@ -62,10 +105,30 @@ input:focus[type='password']{
     outline-style: groove;
 }
 
+.password-input{
+    /* width: 100%; */
+    position: relative;
+}
+
+.password-input > input{
+    width: 100%;
+    padding-right: 38px;
+}
+
+.password-input > img{
+    position: absolute;
+    top: 23.5%;
+    right: 10px;
+    height: 22px;
+    cursor: pointer;
+}
+
 .blm-punya-akun{
-    font-size: 12px;
+    width: 100%;
     display: flex;
+    justify-content: center;
     gap: 5px;
+    font-size: 12px;
 }
 
 .error-message{
@@ -74,5 +137,80 @@ input:focus[type='password']{
 }
 
 .right{
-    width: 55%;
+    width: 60%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    color: white;
+    background: #5E63E4;
+    background: linear-gradient(157deg, rgba(94, 99, 228, 1) 0%, rgba(165, 167, 249, 1) 100%);
+}
+
+.right > main{
+    width: 50%;
+    height: 90dvh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 10px;
+    font-size: 15px;
+}
+
+.populer-buku{
+    display: flex;
+    flex-direction: column;
+}
+
+.populer-buku > :nth-child(2){
+    width: 90%;
+}
+
+.right > main h2{
+    font-weight: bold
+}
+
+main > .content{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+}
+
+main > .content > img{
+    width: 250px;
+    height: 250px;
+    object-fit: fill;
+    border-radius: 10px;
+}
+
+main > .content > p{
+    text-align: center;
+}
+
+
+.btn-lihat-buku{
+    width: 200px;
+    border: .5px solid white;
+}
+
+.btn-lihat-buku:hover{
+    background-color: transparent;
+}
+
+.copyrights{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+}
+
+@media screen and (max-width: 1000px){
+    .left{
+        width: 100%;
+    }
+    .right{
+        display: none;
+    }
 }

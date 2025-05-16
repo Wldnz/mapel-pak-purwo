@@ -645,3 +645,10 @@ INSERT INTO classification_numbers
         FOREIGN KEY(id_user) references users(id),
         FOREIGN KEY(id_book) references books(id)
     );
+
+    INSERT INTO books
+    VALUES (NULL,NULL,NULL,'Bahaya Kecanduan Game','Game adalah sesuatu yang dapat dimainkan dengan aturan tertentu sehingga ada yang menang dan ada yang kalah, biasanya dalam konteks tidak serius atau dengan tujuan hiburan. Mungkin jika dilakukan sesekali tidak menjadi masalah, namun jika dilakukan dengan intensitas terlalu tinggi akan menyebabkan hal yang tidak diinginkan. Belakangan makin banyak ditemukan kasus gangguan kesehatan akibat terlalu banyak bermain game. Salah satu gangguan yang banyak ditemukan di Amerika Serikat adalah deformasi tulang jari dan buku jari. Hal itu terjadi karena penyesuaian bentuk jari dengan controller yang dipegang-sebagai salah satu alat bermain game- jika dilakukan selama bertahun-tahun dengan intensitas sangat tinggi. Untuk kasus yang terjadi kepada anak-anak, sangat rentan terjadinya deformasi tulang jari dan buku jari karena tulang anak masih mengalami perkembangan.
+
+Hal yang sama berlaku juga untuk orang dewasa. Bermain game dengan intensitas sangat tinggi pun tidak dianjurkan. Terdapat beberapa kasus karena overdosis bermain game, jari-jari yang ia pakai untuk bermain game nyeri dan bengkak atau setelah ditelusuri lebih lanjut ia mengalami cedera otot tendon. Untuk kasus lain, terdapat penderita cervical spondylosis, yakni cedera tulang leher akibat posisi duduk statis selama berjam-jam karena bermain game, dan bahkan sampai penderita penyakit mental yang biasa dialami orang yang kecanduan game online.
+
+Game tidak haram untuk dimainkan. Game memang dapat membuat mood membaik jika dimainkan sesekali. Â Namun sebagai individu selayaknya membatasi kadar menikmati game dan bijak dalam memainkannya agar tak termasuk dalam orang yang memiliki gaming disorder.','Pusat Data dan Analisa Tempo','TEMPO Publishing',2021,1,80,'abstrak','indonesian','1747400501571',156,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOQuJV6GEvkddR8rUOzz0c9EkYgCUi4i3wspLOL7afJJ7mTAbpWg-UjlhytHYJ7kiZfTg&usqp=CAU','available')

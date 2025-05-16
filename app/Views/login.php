@@ -1,5 +1,9 @@
 
+<?php 
 
+    $showPassword = false;
+
+?>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -17,37 +21,53 @@
 <body>
     
    <aside class="left">
-    <img src="<?= images ?>/logo.svg" alt="logo" class="perpus-log">
+       <div class="header-login">
+            <img src="<?= images ?>/logo.svg" alt="logo" class="perpus-log">
+            <div class="header-text">
+                <h2>Selamat Datang!</h2>
+                <p>Silahkan login untuk mendapatkan wewenang sebagai anggota kami...</p>
+            </div>
+            <?php
+                if($failLogin){ ?>
+                  <p class="error-message"><?= $error_message ?></p>  
+            <?php }
+            ?>
+        </div>
     <form action="" method="post">
         <div class="text-field">
-            <label for="username">Username<span style="color:red;">*</span></label>
+            <label for="username" class="wajib">Username</label>
             <input 
             type="text" name="username" id="username" 
             minlength="3" maxlength="120" 
             placeholder="Masukkan username"
             required>
-            <p class="error-message">Minimal 3 karakter dan maximal karakter adalah 120 karakter</p>
+            <p class="error-message hidden">Minimal 3 karakter dan maximal karakter adalah 120 karakter</p>
         </div>
         <div class="text-field">
-            <label for="password">Password</label>
-            <input type="password" name="password" id="password" 
-            placeholder="Masukkan username"
-            minlength="8" required>
-            <p class="error-message">Minimal 8 karakter</p>
+            <label for="password" class="wajib">Password</label>
+            <div class="password-input">
+                <input type="password" name="password" id="password" 
+                placeholder="Masukkan username"
+                minlength="8" required>
+                <img src="<?= icons ?>/close-eye.svg" alt="">
+            </div>
+            <p class="error-message hidden">Minimal 8 karakter</p>
         </div>
         <div class="text-bantuan">
-            <div class="remember-me">
-                <input type="checkbox" name="remember-me" checked="false" id="remember-me">
-                <label for="remember-me">ingat saya selama 7 hari?</label>
-            </div>
-            <div class="bantuan">
+            <?php if($failLogin){
+                echo '<div class="bantuan">
                 <a href="#">Lupa username?</a>
                 <p>|</p>
                 <a href="#">Lupa Password?</a>
+            </div>';
+            } ?>
+            <div class="remember-me">
+                <input type="checkbox" name="remember-me" id="remember-me">
+                <label for="remember-me" class="wajib">Menyetujui <a href="#">Syarat & Ketentuan</a></label>
             </div>
         </div>
         <div class="text-field blm-punya-akun">
-            <button type="submit" class="btn">Masuk</button>
+            <button type="button" class="btn btn-disabled" id="btn-login">Masuk</button>
             <div class="blm-punya-akun">
                 <p>Belum Punya Akun?</p>
                 <a href="#">Daftar Disini...</a>
@@ -56,12 +76,79 @@
     </form>
    </aside>
    <aside class="right">
-        <div>
-            <h2>Perpustakaan Xyz</h2>
-            <p>Perpustakaan Xyz adalah perpustakaan yang menyediakan bermacam-macam buku yang dapat membantu anda dalam mencari informasi, buku buku juga akan memberikan wawasan kepada anda</p>
-            <button class="btn">Lihat buku</button>
+        <main>
+            <div class="populer-buku">
+                <h2>Buku - Buku Yang Populer</h2>
+            </div>
+            <div class="content">
+                <img src="" alt="buku" id="buku-populer">
+                <div class="wrapper-dot">
+                    <?php
+                        foreach($books as $book){ ?>
+                            <div class="dot"></div>
+                    <?php } ?>
+                </div>
+                <p id="judul-buku">Lorem ipsum dolor sit amet consectetur adipisicing elit. Accusamus, praesentium.</p>
+                <button class="btn btn-transparent btn-lihat-buku" id="lihat-buku">Lihat Buku</button>
+            </div>
+        </main>
+        <div class="footer-helper">
+            <div class="copyrights">
+                <p>&copy; <?= date('Y') ?> PerpustakaanXyz</p>
+            </div>
         </div>
    </aside>
+    <?php
+     $books_encode = json_encode($books);
+     echo "<script>
+        const wrapper_dot = document.querySelector('.wrapper-dot').children;
+        const buku_populer = document.getElementById('buku-populer'); 
+        const judul_buku = document.getElementById('judul-buku');
+        const lihat_buku = document.getElementById('lihat-buku');
+        const remember_me = document.getElementById('remember-me');
+        const books = $books_encode;
+        const showPasswordParent = document.querySelector('.password-input').children;
+        let index = 0;
+        let showPassword = false;
 
+        buku_populer.src = books[index].image_url;
+        judul_buku.textContent = books[index].title;
+        wrapper_dot[index].classList.add('bg-active');
+        remember_me.onchange = (e) => {
+            if(e.target.checked){
+                document.getElementById('btn-login').type = 'submit';
+                document.getElementById('btn-login').classList.remove('btn-disabled');
+            }else{
+                document.getElementById('btn-login').type = 'button';
+                document.getElementById('btn-login').classList.add('btn-disabled');
+            }
+        };
+
+
+        setInterval(() => {
+            wrapper_dot[index].classList.remove('bg-active');
+            if(index === books.length - 1){
+                index = 0
+            }else{
+                index += 1;
+            }
+            buku_populer.src = books[index].image_url;
+            judul_buku.textContent = books[index].title;
+            wrapper_dot[index].classList.add('bg-active');
+        },5000)
+        lihat_buku.onclick = () => console.log('pergi ke halaman'+ books[index].title);
+        showPasswordParent[1].onclick = () => {
+          if(showPassword){
+            showPasswordParent[0].type = 'text';
+            showPasswordParent[1].src = showPasswordParent[1].src.replace('close-eye.svg','open-eye.svg');
+          }else{
+            showPasswordParent[0].type = 'password';
+            showPasswordParent[1].src = showPasswordParent[1].src.replace('open-eye.svg','close-eye.svg');
+          }
+          showPassword = !showPassword;
+        };
+    </script>"
+    
+    ?>
 </body>
 </html>
