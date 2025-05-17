@@ -33,6 +33,10 @@ header{
     align-items: center;
 
     background-color: var(--warna-4);
+
+    position: sticky;
+    top: 0;
+    left: 0;
 }
 
 nav { 
