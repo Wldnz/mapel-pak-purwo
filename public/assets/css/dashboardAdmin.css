@@ -1,12 +1,12 @@
 
 main{
     width: 100%;
-    height: 88dvh;
+    min-height: 100dvh;
 
     display: flex;
     flex-direction: column;
-
-    padding: 10px;
+    gap: 10px;
+    padding: 15px;
 
     background-color: rgb(231, 231, 231);
 
@@ -14,39 +14,221 @@ main{
 
 .container{
     width: 100%;
-    height: 450px;
+    min-height: 450px;
     
-    padding: 10px;
+    padding: 15px 20px;
 
     border-radius: 10px;
 
     background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.container-child{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.container-child > :nth-child(1){
+    margin-left: 6px;
+}
+
+h2{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--warna-2);
+}
+
+.wrapper-card{
+    width: 100%;
+
+    overflow: hidden;
+    overflow-x: scroll;
+
+    display: flex;
+    align-items: center;
+    gap: 25px;
+
+}
+
+.wrapper-card::-webkit-scrollbar,
+.field-data::-webkit-scrollbar{
+    display: none;
 }
 
 .card{
-    width: 250px;
-    min-height: 125px;
+    min-width: 250px;
+    min-height: 115px;
 
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-    padding: 10px 20px;
+    padding: 10px 10px;
 
     border-radius: 10px;
 
     background-color: rgb(101, 70, 211);
     color: white;
 
-    font-size: 15px;
+    font-size: 18px;
 
 }
 
-.card > :nth-child(1){
-    /* font-weight: bold;s */
-    margin-top: 25px;
+.card > .header{
+    display: flex;
+    justify-content: space-between;
+    position: relative;
 }
 
-.card > :nth-child(2){
-    background-color: red;
-    align-self: flex-end;
+
+.card > .text{
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
 }
+
+.card > .text > h2{
+    font-size: 30px;
+    color: white;
+}
+
+.card > .header > .icon{
+    width: 35px;
+    height: 35px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    border-radius: 4px;
+    background-color: var(--warna-3);
+
+    cursor: help;
+
+}
+
+.card > .header > .icon:hover + .short-desc{
+    display: block;
+}
+
+.card > .header > .icon > img{
+    width: 22px;
+    height: 22px;
+}
+
+.short-desc{
+    max-width: 245px;
+    position: absolute;
+    left: 0;
+    top: 40px;
+    
+    display: none;
+
+    padding: 4px;
+    
+    border-radius: 4px;
+    
+    font-size: 10px;
+    color: rgb(175, 171, 171);
+    background-color: white;
+    z-index: 2;
+}
+.short-desc::before{
+    content: "";
+
+    position: absolute;
+    right: 2px;
+    top: -5px;
+
+    transform: rotateX(180deg);
+    
+    width: 30px;    
+    height: 20px;
+    background-color: inherit;
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+
+    z-index: -1;
+}
+
+.short-desc:hover{
+    display: block;
+}
+
+.desc-text:hover{
+    color: black;
+}
+
+.container-padding-none{
+    padding: 0;
+    gap: 8px;
+}
+
+.container-padding-none > h2{
+    margin-top: 15px;
+   padding: 10px 15px;
+}
+
+.select-container{
+    width: 100%;
+    height: 60px;
+
+    padding: 10px;
+    
+    display: flex;
+    align-items: center;
+    
+    background-color: var(--warna-3);
+}
+
+.select-container > select{
+
+    padding: 3px 10px;
+
+    font-size: 18px;
+    font-weight: bold;
+    
+    color:white;
+    background-color: transparent;
+    
+    border: none;
+}
+
+.select-container > select:focus{
+    outline: none;
+}
+
+select > option
+{
+   font-size: 14px;
+   color: black;
+}
+
+.container > .field-data{
+    min-width: 100%;
+    /* width: max-content; */
+    padding: 10px 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 10px;
+
+    overflow: hidden;
+    /* overflow-x: scroll; */
+}
+
+.container > .field-data > :nth-child(3){
+    display: flex;
+}
+
+.container > .field-data > img{
+    width: 45px;
+    height: 45px;
+    border: 1px solid;
+    border-radius: 5px;
+}
+

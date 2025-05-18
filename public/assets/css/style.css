@@ -23,6 +23,10 @@
 
 }
 
+body{
+    min-width: 400px;
+}
+
 header{
     width: 100%;
     height: 80px;
@@ -37,6 +41,7 @@ header{
     position: sticky;
     top: 0;
     left: 0;
+    z-index: 99999;
 }
 
 nav { 
@@ -71,6 +76,115 @@ nav a{
 
 .menu-menu > *{
     cursor: pointer ;
+}
+
+.option-menu-parrent{
+    position: relative;
+}
+
+.option-menu-parrent > :nth-child(1):hover + .option-menu{
+    display: flex;
+}
+
+.option-menu{
+    width: max-content;
+    padding: 4px 10px;
+    
+    display: none;
+    flex-direction: column;
+
+    text-align: center;
+    font-size: 13px;
+
+    color: #757575;
+    background-color: white;
+    
+    border-radius: 3px;
+
+    position: absolute;
+    top: 25px;
+    right: 0;
+}
+
+.option-menu::before{
+    content: "";
+    width: 40px;
+    height: 40px;
+
+    background-color: inherit;
+    transform: rotateX(180deg);
+    clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+    
+    position: absolute;
+    top: -7.25px;
+    right: 10px;
+
+    z-index: -1;
+}
+
+.option-menu:hover{
+    display: flex;
+}
+
+.option-menu > *:hover{
+    color: var(--warna-7);
+}
+
+.profile{
+    margin-right: 45px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.profile > img{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+}
+
+
+
+.profile-menu{
+    width: 100px;
+    height: 10px;
+   
+    display: none;
+
+    font-size: 14px;
+    font-weight: bolder;
+    color: rgb(82, 11, 11);
+    
+    position: absolute;
+    top: 25px;
+    left: -30px;
+}
+
+.profile-menu > :nth-child(1){
+    width: max-content;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    padding: 5px 15px;
+
+    border-radius: 10px;
+    background-color: white;
+
+    position: absolute;
+    top: 10px;
+    left: 7px;
+}
+
+.profile > img:hover + .profile-menu{
+    display: block;
+}
+
+.profile-menu:hover{
+    display: block;
 }
 
 
@@ -196,8 +310,15 @@ a{
     background-color: var(--warna-6) !important;
 }
 
-@media screen and (max-width : 600px){
+
+
+
+@media screen and (max-width : 1000px){
  
+    .main-menu{
+        display: none;
+    }
+
     .menu-footers{
         justify-content: start;
     }

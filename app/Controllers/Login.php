@@ -20,7 +20,7 @@ class Login extends BaseController{
 
     public function __construct() {
         $this->db = db_connect();
-        $result = $this->db->query("SELECT * FROM books LIMIT 5");
+        $result = $this->db->query("SELECT * FROM books LIMIT 6");
         $books = [];
         if($result->getNumRows() > 0){
             $books= $result->getResultArray();
