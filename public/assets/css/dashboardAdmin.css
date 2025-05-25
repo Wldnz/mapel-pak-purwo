@@ -208,7 +208,7 @@ select > option
    color: black;
 }
 
-.container > .field-data{
+#table-permintaan > .field-data{
     min-width: 100%;
     /* width: max-content; */
     padding: 10px 30px;
@@ -221,14 +221,19 @@ select > option
     /* overflow-x: scroll; */
 }
 
-.container > .field-data > :nth-child(3){
+#table-permintaan > .field-data > :nth-child(3){
     display: flex;
 }
 
-.container > .field-data > img{
+#table-permintaan > .field-data > img{
     width: 45px;
     height: 45px;
     border: 1px solid;
     border-radius: 5px;
 }
 
+#table-permintaan > p{
+    margin-top: 80px;
+    font-size: 20px;
+    text-align: center;
+}

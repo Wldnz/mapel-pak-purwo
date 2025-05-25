@@ -1,0 +1,36 @@
+
+main{
+    width: 100%;
+    min-height: 100dvh;
+    padding: 10px;
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+table{
+    width: 60px;
+    border: 1px solid #DFDFDF;
+    background-color: #DFDFDF;
+    padding: 10px;
+}
+
+tr{
+    font-size: 14px;
+}
+
+input{
+    width: 230px;
+    padding: 4px;
+    background: transparent;
+    border: none;
+}
+
+input:focus{
+    outline: 1px solid;
+}

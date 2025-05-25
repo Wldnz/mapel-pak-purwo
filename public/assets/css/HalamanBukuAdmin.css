@@ -1,0 +1,147 @@
+main{
+    width: 100%;
+    min-height: 100dvh;
+
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px;
+
+    background-color: rgb(231, 231, 231);
+
+}
+
+.container{
+    width: 100%;
+    min-height: 450px;
+    
+    padding: 15px 20px;
+
+    border-radius: 10px;
+
+    background-color: white;
+
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.container-child{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+h2{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--warna-2);
+}
+
+.menu-filter{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.menu-filter >  .select-option{
+    display: flex;
+    gap: 10px;
+}
+
+.select-option > select{
+    min-width: 260px;
+    height: 50px;
+    padding: 8px 10px;
+
+    border: none;
+    border-radius: 7px;
+    font-size: 14px;
+    
+    color: white;
+    background-color: var(--warna-2);
+    outline: none;
+}
+
+.select-option > select > option{
+    color: black;
+    background-color: white;
+}
+
+.menu-filter > .search{
+    display: flex;
+    align-items: center;
+    /* padding: 10px; */
+    position: relative;
+}
+
+.menu-filter > .search > input{
+    width: 280px;
+    height: 40px;
+    padding: 4px 5px;
+    border: .1px solid #DFDFDF;
+    border-radius: 3px 0px 0px 3px;
+    outline-color: var(--warna-3);
+}
+
+.icon{
+    position: absolute;
+    bottom: 5px;
+    right: 10px;
+}
+
+.menu-filter > .search > button {
+    width: 40px;
+    height: 40px;
+    border: .1px solid #DFDFDF;
+    border-radius: 0px 3px 3px 0px;
+    cursor: pointer;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.menu-filter > .search > button > img{
+    height: 25px;
+}
+
+.menu-filter > .search > .icon > img{
+    width: 25px;
+    height: 25px;
+}
+
+table{ 
+    width: 100%;
+    border-spacing: 0;
+    font-size: 13.5px;
+
+    text-align: center;
+}
+
+.table-header{
+    height: 45px;
+    font-size: 14px;
+    font-weight: bolder;
+    color: rgb(88, 88, 88);
+    background-color: #DFDFDF;
+}
+
+td{
+    padding: 15px;
+    max-width: 105px;
+}
+
+.footer-pagination{
+    display: flex;
+    align-self: flex-end;
+}
+
+.text-red{
+    color: red;
+}
+
+.text-green{
+    color: green;
+}

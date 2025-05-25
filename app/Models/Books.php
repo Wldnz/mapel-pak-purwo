@@ -84,5 +84,30 @@ class Books{
        }
        return $buku;
     }
+
+    public function getBorrowedBooksByStatus(string $status): array{
+        $buku = [];
+        $query = $this->db->query("SELECT 
+          b.*, bw.*, bc.*, u.name, u.fullname, u.email, u.phone, u.role, u.status as user_status
+          FROM borrowed_books as bw 
+              INNER JOIN book_copys as bc 
+                ON bw.id_book_copy = bc.id
+                  INNER JOIN users as u 
+                    ON bw.id_user = u.id
+                      INNER JOIN books as b 
+                        ON bc.id_book = b.id
+                          WHERE bw.status = '$status';
+        ");
+
+       if($query->getNumRows() > 0){
+         $buku = $query->getResultArray();
+       }
+       return $buku;
+    }
+
+    public function getAllAuthor(){
+      $query = $this->db->query("SELECT author FROM books GROUP BY author;");
+      return $query->getResultArray();
+    }
     
 }

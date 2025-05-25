@@ -5,6 +5,7 @@ use App\Controllers\Home;
 use App\Controllers\Pages;
 use App\Controllers\Login;
 use App\Controllers\DashboardAdmin;
+use App\Controllers\HalamanAkunAdmin;
 use App\Controllers\HalamanBukuAdmin;
 
 /**
@@ -21,3 +22,4 @@ $routes->get('login', [Login::class, 'index']);
 
 $routes->get('admin/dashboard', [DashboardAdmin::class, 'index']);
 $routes->get('admin/management-buku', [HalamanBukuAdmin::class, 'index']);
+$routes->get('admin/management-akun', [HalamanAkunAdmin::class, 'index']);

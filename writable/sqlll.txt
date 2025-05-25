@@ -1,16 +1,4 @@
-CREATE TABLE books(
-    id INT PRIMARY KEY AUTO_INCREMENT,
-    title varchar(265) NOT NULL,
-    description varchar(265) NOT NULL,
-    publisher varchar(265) NOT NULL,
-    publication_year BIGINT NOT NULL,
-    edition_number INT default 1,
-    total_pages int NOT NULL,
-    category varchar(265) NOT NULL,
-    language varchar(255) DEFAULT 'indonesian',
-    receiver_date BIGINT NOT NULL,
-    status enum('available','borrowed','lost','damaged','under repair')
-);
+
 
 Klasifikasi Koleksi Perpustakaan
 Panduan Nomor Klasifikasi Koleksi di Perpustakaan
@@ -151,6 +139,116 @@ Panduan Nomor Klasifikasi Koleksi di Perpustakaan
 990 - 999 (Sejarah Umum Bagian Dunia Lainnya)
 
 
+000 Ilmu Umum, Pengetahuan, dan Komputer
+    001 Pengetahuan
+    002 Buku
+    003 Sistem
+    004 Pengolahan Data, Ilmu Komputer
+    005 Pemrograman Komputer, Data, Struktur Data
+    006 Metode Komputer Khusus
+    007 Tidak digunakan lagi
+    008 Tidak digunakan lagi
+    009 Tidak digunakan lagi
+
+100 Filsafat dan Psikologi
+    101 Teori Filsafat
+    102 Aneka Ragam Filsafat
+    103 Kamus dan Ensiklopedia Filosofi
+    104 Topik Khusus dalam Filsafat
+    105 Publikasi Serial Filosofi
+    106 Organisasi Filosofi
+    107 Pendidikan dan Penelitian dalam Filsafat
+    108 Kelompok Orang dalam Filsafat
+    109 Sejarah Filsafat
+
+200 Agama
+    201 Filsafat dan Teori Agama
+    202 Aneka Ragam Agama
+    203 Kamus dan Ensiklopedia Agama
+    204 Topik Khusus dalam Agama
+    205 Publikasi Serial Agama
+    206 Organisasi Agama
+    207 Pendidikan dan Penelitian dalam Agama
+    208 Kelompok Orang dalam Agama
+    209 Sejarah Agama
+
+300 Ilmu-ilmu Sosial
+    301 Sosiologi dan Antropologi
+    302 Proses Sosial
+    303 Proses Pemerintahan
+    304 Faktor-faktor yang Mempengaruhi Perilaku Sosial
+    305 Kelompok Sosial
+    306 Kebudayaan dan Lembaga
+    307 Komunitas
+    308 Tidak digunakan lagi
+    309 Sejarah Ilmu-ilmu Sosial
+
+400 Bahasa
+    401 Filsafat dan Teori Bahasa
+    402 Aneka Ragam Bahasa
+    403 Kamus Bahasa
+    404 Topik Khusus dalam Bahasa
+    405 Publikasi Serial Bahasa
+    406 Organisasi Bahasa
+    407 Pendidikan dan Penelitian dalam Bahasa
+    408 Kelompok Orang dalam Bahasa
+    409 Sejarah Bahasa
+
+500 Ilmu Pengetahuan Alam dan Matematika
+    501 Filsafat dan Teori Ilmu Pengetahuan Alam
+    502 Aneka Ragam Ilmu Pengetahuan Alam
+    503 Kamus dan Ensiklopedia Ilmu Pengetahuan Alam
+    504 Topik Khusus dalam Ilmu Pengetahuan Alam
+    505 Publikasi Serial Ilmu Pengetahuan Alam
+    506 Organisasi Ilmu Pengetahuan Alam
+    507 Pendidikan dan Penelitian dalam Ilmu Pengetahuan Alam
+    508 Sejarah dan Deskripsi Alam
+    509 Sejarah Ilmu Pengetahuan Alam
+
+600 Teknologi dan Ilmu-ilmu Terapan
+    601 Filsafat dan Teori Teknologi
+    602 Aneka Ragam Teknologi
+    603 Kamus dan Ensiklopedia Teknologi
+    604 Topik Khusus dalam Teknologi
+    605 Publikasi Serial Teknologi
+    606 Organisasi Teknologi
+    607 Pendidikan dan Penelitian dalam Teknologi
+    608 Invensi dan Paten
+    609 Sejarah Teknologi
+
+700 Seni, Hiburan, dan Olahraga
+    701 Filsafat dan Teori Seni Rupa
+    702 Aneka Ragam Seni Rupa
+    703 Kamus dan Ensiklopedia Seni Rupa
+    704 Topik Khusus dalam Seni Rupa
+    705 Publikasi Serial Seni Rupa
+    706 Organisasi Seni Rupa
+    707 Pendidikan dan Penelitian dalam Seni Rupa
+    708 Galeri, Museum, Koleksi Pribadi
+    709 Sejarah Seni Rupa
+
+800 Sastra dan Retorika
+    801 Teori Sastra dan Kritik
+    802 Aneka Ragam Sastra
+    803 Kamus dan Ensiklopedia Sastra
+    804 Topik Khusus dalam Sastra
+    805 Publikasi Serial Sastra
+    806 Organisasi Sastra
+    807 Pendidikan dan Penelitian dalam Sastra
+    808 Retorika
+    809 Sejarah Sastra
+
+900 Geografi dan Sejarah
+    901 Filsafat dan Teori Sejarah dan Geografi
+    902 Aneka Ragam Sejarah dan Geografi
+    903 Kamus dan Ensiklopedia Sejarah dan Geografi
+    904 Topik Khusus dalam Sejarah dan Geografi
+    905 Publikasi Serial Sejarah dan Geografi
+    906 Organisasi Sejarah dan Geografi
+    907 Pendidikan dan Penelitian dalam Sejarah dan Geografi
+    908 Sejarah dan Deskripsi Wilayah Umum
+    909 Sejarah Dunia
+
 
 
 
@@ -178,6 +276,71 @@ INSERT INTO classification_numbers
         ('108','Kelompok Orang dalam Filsafat','active'),
         ('109','Sejarah Filsafat','active');
 
+CREATE DATABASE library;
+
+USE library;
+
+CREATE TABLE users (
+  id int PRIMARY KEY AUTO_INCREMENT,
+  name varchar(60) NOT NULL,
+  fullname varchar(120) NOT NULL,
+  email varchar(120) NOT NULL,
+  phone varchar(12) DEFAULT '-',
+  password varchar(265) NOT NULL,
+  role enum('user','staff','admin') DEFAULT NULL,
+  status enum('unverified','verified','deleted') DEFAULT 'unverified'
+);
+
+CREATE TABLE  personal_account (
+  id int PRIMARY KEY NOT NULL AUTO_INCREMENT,
+  id_user int NOT NULL,
+  address varchar(265) NOT NULL,
+  identify_type varchar(20) NOT NULL,
+  identify_image varchar(265) NOT NULL,
+  profile_image varchar(265) DEFAULT 'https://res.cloudinary.com/ddiulakke/image/upload/v1747055039/vecteezy_profile-icon-design-vector_5544718_cje74w.jpg',
+  status_user enum('student','worker') NOT NULL,
+  created_at bigint NOT NULL,
+  updated_at bigint NOT NULL,
+  status enum('success','fail') NOT NULL DEFAULT 'fail',
+  FOREIGN KEY (id_user) REFERENCES users (id)
+);
+
+CREATE TABLE  books(
+    id INT PRIMARY KEY AUTO_INCREMENT,
+    isbn_10 varchar(10) DEFAULT NULL,
+    isbn_13 varchar(13) DEFAULT NULL,
+    title varchar(265) NOT NULL,
+    description text NOT NULL,
+    author varchar(125) NOT NULL,
+    publisher varchar(265) NOT NULL,
+    publication_year BIGINT NOT NULL,
+    edition_number INT default 1,
+    total_pages int NOT NULL,
+    category varchar(265) NOT NULL,
+    language varchar(255) DEFAULT 'indonesian',
+    receiver_date BIGINT NOT NULL,
+    clsn_id int NOT NULL,
+    image_url varchar(255) NOT NULL,
+    status enum('public','private'),
+    FOREIGN KEY(clsn_id) REFERENCES classification_numbers(id)
+);
+
+CREATE TABLE  book_copys (
+  id varchar(40) PRIMARY KEY NOT NULL,
+  id_book int NOT NULL,
+  call_number varchar(60) DEFAULT NULL,
+  status enum('available','borrowed','lost','damaged','under repair') DEFAULT NULL,
+  loan_date bigint DEFAULT NULL,
+  due_date bigint DEFAULT NULL,
+  physical_condition varchar(40) DEFAULT 'good',
+  FOREIGN KEY(id_book) REFERENCES books(id)
+);
+
+CREATE TABLE  classification_numbers (
+  id int PRIMARY KEY,
+  classification varchar(265) NOT NULL,
+  status enum('active','inactive') NOT NULL DEFAULT 'active'
+);
 
 
 INSERT INTO classification_numbers
@@ -514,116 +677,8 @@ INSERT INTO classification_numbers
         ('998', 'Sejarah Kutub Utara dan Selatan', 'active'),
         ('999', 'Sejarah di Luar Bumi', 'active');
 
-000 Ilmu Umum, Pengetahuan, dan Komputer
-    001 Pengetahuan
-    002 Buku
-    003 Sistem
-    004 Pengolahan Data, Ilmu Komputer
-    005 Pemrograman Komputer, Data, Struktur Data
-    006 Metode Komputer Khusus
-    007 Tidak digunakan lagi
-    008 Tidak digunakan lagi
-    009 Tidak digunakan lagi
 
-100 Filsafat dan Psikologi
-    101 Teori Filsafat
-    102 Aneka Ragam Filsafat
-    103 Kamus dan Ensiklopedia Filosofi
-    104 Topik Khusus dalam Filsafat
-    105 Publikasi Serial Filosofi
-    106 Organisasi Filosofi
-    107 Pendidikan dan Penelitian dalam Filsafat
-    108 Kelompok Orang dalam Filsafat
-    109 Sejarah Filsafat
-
-200 Agama
-    201 Filsafat dan Teori Agama
-    202 Aneka Ragam Agama
-    203 Kamus dan Ensiklopedia Agama
-    204 Topik Khusus dalam Agama
-    205 Publikasi Serial Agama
-    206 Organisasi Agama
-    207 Pendidikan dan Penelitian dalam Agama
-    208 Kelompok Orang dalam Agama
-    209 Sejarah Agama
-
-300 Ilmu-ilmu Sosial
-    301 Sosiologi dan Antropologi
-    302 Proses Sosial
-    303 Proses Pemerintahan
-    304 Faktor-faktor yang Mempengaruhi Perilaku Sosial
-    305 Kelompok Sosial
-    306 Kebudayaan dan Lembaga
-    307 Komunitas
-    308 Tidak digunakan lagi
-    309 Sejarah Ilmu-ilmu Sosial
-
-400 Bahasa
-    401 Filsafat dan Teori Bahasa
-    402 Aneka Ragam Bahasa
-    403 Kamus Bahasa
-    404 Topik Khusus dalam Bahasa
-    405 Publikasi Serial Bahasa
-    406 Organisasi Bahasa
-    407 Pendidikan dan Penelitian dalam Bahasa
-    408 Kelompok Orang dalam Bahasa
-    409 Sejarah Bahasa
-
-500 Ilmu Pengetahuan Alam dan Matematika
-    501 Filsafat dan Teori Ilmu Pengetahuan Alam
-    502 Aneka Ragam Ilmu Pengetahuan Alam
-    503 Kamus dan Ensiklopedia Ilmu Pengetahuan Alam
-    504 Topik Khusus dalam Ilmu Pengetahuan Alam
-    505 Publikasi Serial Ilmu Pengetahuan Alam
-    506 Organisasi Ilmu Pengetahuan Alam
-    507 Pendidikan dan Penelitian dalam Ilmu Pengetahuan Alam
-    508 Sejarah dan Deskripsi Alam
-    509 Sejarah Ilmu Pengetahuan Alam
-
-600 Teknologi dan Ilmu-ilmu Terapan
-    601 Filsafat dan Teori Teknologi
-    602 Aneka Ragam Teknologi
-    603 Kamus dan Ensiklopedia Teknologi
-    604 Topik Khusus dalam Teknologi
-    605 Publikasi Serial Teknologi
-    606 Organisasi Teknologi
-    607 Pendidikan dan Penelitian dalam Teknologi
-    608 Invensi dan Paten
-    609 Sejarah Teknologi
-
-700 Seni, Hiburan, dan Olahraga
-    701 Filsafat dan Teori Seni Rupa
-    702 Aneka Ragam Seni Rupa
-    703 Kamus dan Ensiklopedia Seni Rupa
-    704 Topik Khusus dalam Seni Rupa
-    705 Publikasi Serial Seni Rupa
-    706 Organisasi Seni Rupa
-    707 Pendidikan dan Penelitian dalam Seni Rupa
-    708 Galeri, Museum, Koleksi Pribadi
-    709 Sejarah Seni Rupa
-
-800 Sastra dan Retorika
-    801 Teori Sastra dan Kritik
-    802 Aneka Ragam Sastra
-    803 Kamus dan Ensiklopedia Sastra
-    804 Topik Khusus dalam Sastra
-    805 Publikasi Serial Sastra
-    806 Organisasi Sastra
-    807 Pendidikan dan Penelitian dalam Sastra
-    808 Retorika
-    809 Sejarah Sastra
-
-900 Geografi dan Sejarah
-    901 Filsafat dan Teori Sejarah dan Geografi
-    902 Aneka Ragam Sejarah dan Geografi
-    903 Kamus dan Ensiklopedia Sejarah dan Geografi
-    904 Topik Khusus dalam Sejarah dan Geografi
-    905 Publikasi Serial Sejarah dan Geografi
-    906 Organisasi Sejarah dan Geografi
-    907 Pendidikan dan Penelitian dalam Sejarah dan Geografi
-    908 Sejarah dan Deskripsi Wilayah Umum
-    909 Sejarah Dunia
-
+     // dont use this one - wildan
      CREATE TABLE return_book(
         id int primary key auto_increment,
         id_user int not null,
@@ -637,18 +692,157 @@ INSERT INTO classification_numbers
     CREATE TABLE borrowed_books(
         id INT PRIMARY KEY AUTO_INCREMENT,
         id_user int not null,
-        id_book int not null,
-        book_condition enum('good','damaged','under repair') NOT NULL,
+        id_book_copy varchar(40) not null,
+        book_condition enum('good','damaged') NOT NULL,
         borrowed_at BIGINT NOT NULL,
-        return_condition enum('good','damaged','lost'),
+        return_condition enum('good','damaged','lost') NOT NULL,
+        status enum('wait','borrowed','returned','fail') NOT NULL DEFAULT 'wait',
         return_at BIGINT,
         FOREIGN KEY(id_user) references users(id),
-        FOREIGN KEY(id_book) references books(id)
+        FOREIGN KEY(id_book_copy) references book_copys(id)
+    );
+
+    CREATE TABLE action_logs (
+        id int PRIMARY KEY AUTO_INCREMENT,
+        user_id int NOT NULL,
+        action varchar(265) NOT NULL,
+        action_at bigint DEFAULT NULL,
+        FOREIGN KEY(user_id) REFERENCES users(id)
     );
 
     INSERT INTO books
+    VALUES 
+    (
+        NULL,
+        NULL,
+        '9780593638385',
+        'Always remember',
+        "Lady Jennifer Arden and Ben Ellis know that a match between them is out of the question. Yet their hearts yearn for the impossible. Left unable to walk by a childhood illness, Lady Jennifer, sister of the Duke of Wilby, has grown up to make a happy place for herself in society. Outgoing and cheerful, she has many friends and enjoys the pleasures of high society—even if she cannot dance at balls or stroll in Hyde Park. She is blessed with a large, loving, and protective family. But she secretly dreams of marriage and children, and of walking—and dancing. When Ben Ellis comes across Lady Jennifer as she struggles to walk with the aid of primitive crutches, he instantly understands her yearning. He is a fixer. It is often said of him that he never saw a practical problem he did not have to solve. He wants to help her discover independence and motion—driving a carriage, swimming, even walking a different way. But he must be careful. He is the bastard son of the late Earl of Stratton. Though he was raised with the earl’s family, he knows he does not really belong in the world of the ton. Jennifer is shocked—and intrigued—by Ben’s ideas, and both families are alarmed by the growing friendship and perhaps more that they sense developing between the two. A duke’s sister certainly cannot marry the bastard son of an earl. Except sometimes, love can find a way.",
+        "Balogh, Mary", 
+        "New York : Berkley, 2024; © 2024 by Mary Balogh",
+        2024,
+        0,
+        359,
+        'Fiksi Inggris / Novel',
+        'english',
+        '1747792627227',
+        820,
+        'https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/273324.jpg','public
+        '),
+    (
+    NULL,
+    NULL,
+    '9786020670256',
+    'Crying in h mart : a memoir',
+    "Ketika Michelle tahu ibunya menderita kanker, dunianya seolah terhenti. Ditinggalkannya kehidupannya di kota besar untuk kembali ke rumah masa kecilnya menemani sang ibu. Michelle harus berjuang melawan kesedihan, kemarahan, dan rasa cemasnya setelah kemudian ibunya wafat. Dia melakukan terapi diri melalui makanan Korea dan mendapatkan hiburan tak terduga dari kunjungannya setiap minggu ke H Mart, toko bahan makanan Asia favoritnya. Dia memasak semua hidangan Korea yang pernah disantapnya sambil mengenang waktu-waktu yang telah dihabiskannya: tumbuh di bawah asuhan seorang ibu yang keras dan menuntut; musim panas yang semarak di Seoul; perasaannya sebagai seorang anak setengah Korea; dan hidangan penghangat tubuh dan jiwa yang mempertemukan dirinya dengan ibunya berulang kali. Inilah kisah Michelle yang sangat jujur: tumbuh terpisah dari, dan kemudian kembali bersama, identitas Korea-nya serta menempa jalannya sendiri setelah mengalami kehilangan yang menghancurkan.","Michelle Zauner",
+    'New York : Vintage Books, 2023; © 2021 by Michelle Zauner',
+    2023,
+    0,
+    239,
+    'Fiksi Inggris / Novel',
+    'english',
+    '1747792627227',
+    820,
+    'https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/255230.jpg','public'
+    ),
+    (
+        NULL,
+        NULL,
+        '9781728259765',
+        'A touch of chaos',
+        "The world will burn in the final installment of Scarlett St. Clair's bestselling Hades X Persephone saga. The gods are at war, the Titans have been released, and Hades and Persephone must fight tooth and nail for their happy ending. Persephone, Goddess of Spring, never guessed that a chance encounter with Hades, God of the Underworld, would change her life forever-but he did. Now embroiled in a fight for humanity and battles between the gods, Persephone and Hades have entered a world they never thought they would see. To end the chaos, Persephone must draw upon her darkness and embrace who she's become-goddess, wife, queen of the Underworld. Once, Persephone made bargains to save those she loves. Now, she will go to war for them.","Clair, Scarlett St.", 
+        "Illinois : Bloom Books, 2024; © 2024 by Scarlett St. Clair",
+        2024,
+        0,
+        575,
+        'Fiksi Inggris / / Novel',
+        'english',
+        '1747792627227',
+        820,
+        'https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/273429.jpg','public'
+        );
+
+    VALUES (NULL,NULL,'9781803381220','An unofficial guide to the world of studio Ghibli',"From the creators of the podcast and bestselling book Ghibliotheque, this is a young film fan's comprehensive guide to one of the most exciting and influential film studios in cinema history, creators of beloved classics ranging from Spirited Away and My Neighbour Totoro to Ponyo and Kiki's Delivery Service. Across eight chapters, we will get up close and personal with the movies, learn who's who at the Oscar-winning studio and explore the impact that Ghibli World has left on our planet.","Michael", "London : Welbeck Children's, 2023; © Welbeck Children's Limied 2023",2023,1,121,'Film Reviews / Film Animasi / Studio Ghibli','english','1747792627227',700,'https://koleksiperpus.jakarta.go.id/dispusip/uploaded_files/sampul_koleksi/original/Monograf/274922.jpg','public');
+
+
+
     VALUES (NULL,NULL,NULL,'Bahaya Kecanduan Game','Game adalah sesuatu yang dapat dimainkan dengan aturan tertentu sehingga ada yang menang dan ada yang kalah, biasanya dalam konteks tidak serius atau dengan tujuan hiburan. Mungkin jika dilakukan sesekali tidak menjadi masalah, namun jika dilakukan dengan intensitas terlalu tinggi akan menyebabkan hal yang tidak diinginkan. Belakangan makin banyak ditemukan kasus gangguan kesehatan akibat terlalu banyak bermain game. Salah satu gangguan yang banyak ditemukan di Amerika Serikat adalah deformasi tulang jari dan buku jari. Hal itu terjadi karena penyesuaian bentuk jari dengan controller yang dipegang-sebagai salah satu alat bermain game- jika dilakukan selama bertahun-tahun dengan intensitas sangat tinggi. Untuk kasus yang terjadi kepada anak-anak, sangat rentan terjadinya deformasi tulang jari dan buku jari karena tulang anak masih mengalami perkembangan.
 
 Hal yang sama berlaku juga untuk orang dewasa. Bermain game dengan intensitas sangat tinggi pun tidak dianjurkan. Terdapat beberapa kasus karena overdosis bermain game, jari-jari yang ia pakai untuk bermain game nyeri dan bengkak atau setelah ditelusuri lebih lanjut ia mengalami cedera otot tendon. Untuk kasus lain, terdapat penderita cervical spondylosis, yakni cedera tulang leher akibat posisi duduk statis selama berjam-jam karena bermain game, dan bahkan sampai penderita penyakit mental yang biasa dialami orang yang kecanduan game online.
 
-Game tidak haram untuk dimainkan. Game memang dapat membuat mood membaik jika dimainkan sesekali. Â Namun sebagai individu selayaknya membatasi kadar menikmati game dan bijak dalam memainkannya agar tak termasuk dalam orang yang memiliki gaming disorder.','Pusat Data dan Analisa Tempo','TEMPO Publishing',2021,1,80,'abstrak','indonesian','1747400501571',156,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOQuJV6GEvkddR8rUOzz0c9EkYgCUi4i3wspLOL7afJJ7mTAbpWg-UjlhytHYJ7kiZfTg&usqp=CAU','available')
+Game tidak haram untuk dimainkan. Game memang dapat membuat mood membaik jika dimainkan sesekali. Â Namun sebagai individu selayaknya membatasi kadar menikmati game dan bijak dalam memainkannya agar tak termasuk dalam orang yang memiliki gaming disorder.','Pusat Data dan Analisa Tempo','TEMPO Publishing',2021,1,80,'abstrak','indonesian','1747400501571',156,'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQOQuJV6GEvkddR8rUOzz0c9EkYgCUi4i3wspLOL7afJJ7mTAbpWg-UjlhytHYJ7kiZfTg&usqp=CAU','public');
+    
+    INSERT INTO book_copys
+        VALUES
+            ('BK-01',2,'BAH-01','available',NULL,NULL,'good'),
+            ('BK-02',3,'ANU-01','available',NULL,NULL,'good'),
+            ('BK-03',4,'ALW-01','available',NULL,NULL,'good'),
+            ('BK-04',2,'BAH-02','available',NULL,NULL,'good'),
+            ('BK-05',5,'CRY-01','available',NULL,NULL,'good');
+
+    INSERT INTO action_logs
+        VALUES
+            (NULL,2,'mencoba login & gagal','1747796422202'),
+            (NULL,3,'mencoba login & berhasil','1747796422202'),
+            (NULL,4,'mencoba login & gagal','1747796422202'),
+            (NULL,1,'melakukan verifikasi akun','1747796422202'),
+            (NULL,1,'akun berhasil di verifikasi','1747796422232');
+
+    INSERT INTO borrowed_books
+        VALUES
+            (NULL,2,'BK-02','good','1747796668277','good','wait',NULL);
+
+    INSERT INTO borrowed_books
+        VALUES
+            (NULL,3,'BK-03','good','1747796668277','good','borrowed',NULL);
+    
+    UPDATE book_copys 
+        SET status = 'borrowed' 
+            WHERE id = 'BK-03';
+
+    INSERT INTO borrowed_books
+        VALUES
+            (NULL,4,'BK-01','good','1747796668277','good','wait',NULL),
+            (NULL,3,'BK-04','good','1747796668277','good','wait',NULL),
+            (NULL,4,'BK-05','good','1747796668277','good','wait',NULL);
+
+     UPDATE personal_account 
+        SET status = 'success' 
+            WHERE id_user = '2';
+
+     UPDATE users
+        SET status = 'verified' 
+            WHERE id = '2';
+
+
+INSERT INTO users VALUES
+    (NULL,'wildan','Wildan Izhar Al HAqq','wildanofficial32@gmail.com','-',MD5('wildanmariwil'),'admin','unverified'),
+    (NULL,'atvhi','Mohammad Aqil Athvihaz','athvi@gmail.com','-',MD5('atvhimarivi'),'user','unverified'),
+    (NULL,'radit','Raditya Putra Hidayat','radit@gmail.com','-',MD5('raditmaridit'),'user','unverified'),
+    (NULL,'Rizky','rizkysugiharto','rizy@gmail.com','-',MD5('rizkymariky'),'user','unverified'),
+    (NULL,'Raihan','Raihan Rizky Adriansyah','raihan@gmail.com','-',MD5('raihanmarihan'),'staff','unverified');
+
+INSERT INTO personal_account
+    VALUES
+    (NULL,1,'Alamat Rumah Wildan','Kartu Pelajar','https://res.cloudinary.com/ddiulakke/image/upload/v1747752518/canva-biru-simpel-garis-kartu-pelajar-siswa-sekolah-Gq2mLjMpWhg_odxh9n.jpg','https://res.cloudinary.com/ddiulakke/image/upload/v1747055039/vecteezy_profile-icon-design-vector_5544718_cje74w.jpg','student','1747792627227','1747792627227'),
+    (NULL,2,'Alamat Rumah Athvi','Kartu Pelajar','https://res.cloudinary.com/ddiulakke/image/upload/v1747752518/canva-biru-simpel-garis-kartu-pelajar-siswa-sekolah-Gq2mLjMpWhg_odxh9n.jpg','https://res.cloudinary.com/ddiulakke/image/upload/v1747055039/vecteezy_profile-icon-design-vector_5544718_cje74w.jpg','student','1747792627227','1747792627227'),
+    (NULL,3,'Alamat Rumah Radit','Kartu Pelajar','https://res.cloudinary.com/ddiulakke/image/upload/v1747752518/canva-biru-simpel-garis-kartu-pelajar-siswa-sekolah-Gq2mLjMpWhg_odxh9n.jpg','https://res.cloudinary.com/ddiulakke/image/upload/v1747055039/vecteezy_profile-icon-design-vector_5544718_cje74w.jpg','student','1747792627227','1747792627227'),
+    (NULL,4,'Alamat Rumah Rizky','Kartu Pelajar','https://res.cloudinary.com/ddiulakke/image/upload/v1747752518/canva-biru-simpel-garis-kartu-pelajar-siswa-sekolah-Gq2mLjMpWhg_odxh9n.jpg','https://res.cloudinary.com/ddiulakke/image/upload/v1747055039/vecteezy_profile-icon-design-vector_5544718_cje74w.jpg','student','1747792627227','1747792627227'),
+    (NULL,5,'Alamat Rumah Raihan','Kartu Pelajar','https://res.cloudinary.com/ddiulakke/image/upload/v1747752518/canva-biru-simpel-garis-kartu-pelajar-siswa-sekolah-Gq2mLjMpWhg_odxh9n.jpg','https://res.cloudinary.com/ddiulakke/image/upload/v1747055039/vecteezy_profile-icon-design-vector_5544718_cje74w.jpg','student','1747792627227','1747792627227');
+
+
+
+SELECT * FROM books;
+SELECT
+    bb.id as id_peminjaman,
+    u.id as id_user, 
+    u.name,
+    u.fullname,
+    bb.id_book_copy,
+    bc.call_number
+  FROM borrowed_books bb INNER JOIN users u ON bb.id_user = u.id INNER JOIN book_copys bc ON bc.id = bb.id_book_copy WHERE u.id = 2; 
+
+SELECT * FROM books
+
+SELECT * FROM borrowed_books
+	WHERE STATUS = 'borrowed'; 

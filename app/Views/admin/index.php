@@ -146,35 +146,60 @@
                 <option value="Peminjaman Buku">Permintaan Peminjaman Buku</option>
             </select>
         </div>
-        <div class="field-data">
-            <img src="https://res.cloudinary.com/ddiulakke/image/upload/v1747055039/vecteezy_profile-icon-design-vector_5544718_cje74w.jpg" alt="profil">
-            <h4>Wldnz</h4>
-            <h4>Wil***</h4>
-            <h4>w***@gmail.com</h4>
-            <h4>Anggota</h4>
-            <a href="#">Lihat Detail...</a>
-        </div>
-        <div class="field-data">
-            <img src="https://res.cloudinary.com/ddiulakke/image/upload/v1747055039/vecteezy_profile-icon-design-vector_5544718_cje74w.jpg" alt="profil">
-            <h4>Wldnz</h4>
-            <h4>Wil***</h4>
-            <h4>w***@gmail.com</h4>
-            <h4>Anggota</h4>
-            <a href="#">Lihat Detail...</a>
-        </div>
-        <div class="field-data">
-            <img src="https://res.cloudinary.com/ddiulakke/image/upload/v1747055039/vecteezy_profile-icon-design-vector_5544718_cje74w.jpg" alt="profil">
-            <h4>Wldnz</h4>
-            <h4>Wil***</h4>
-            <h4>w***@gmail.com</h4>
-            <h4>Anggota</h4>
-            <a href="#">Lihat Detail...</a>
+        <div id="table-permintaan">
+            
         </div>
     </div>
 </main>
 
-<script>
-    document.getElementById('selection-permintaan').onchange = ((e) => {
-       document.getElementById('header-text-selection').textContent = e.target.value;
-    })
+<?php
+    $books_encode = json_encode($data["permintaan-peminjaman"]);
+    $verification_encode = json_encode($data["permintaan-verifikasi"]);
+echo "<script>
+    const books = $books_encode;
+    const verif = $verification_encode;
+    const selection_permintaan = document.getElementById('selection-permintaan');
+    const tablePermintaan = document.getElementById('table-permintaan');              
+</script>";
+?>
+
+<script defer>
+    setDataPermintaan(selection_permintaan.value);
+    selection_permintaan.onchange = ((e) => setDataPermintaan(e.target.value) );
+    function setDataPermintaan(currentSelectValue){
+        if(currentSelectValue.includes('Peminjaman')){
+        if(books.length === 0) return tablePermintaan.innerHTML = `<p>Tidak Ada Data Terkait ${currentSelectValue}..</p>`;
+          const result = books.map((value,index) => {
+            const email = value.email.split("@");
+            return `<div class='field-data'>
+                <img src='${value.image_url}' alt='image'>
+                <h4>${value.title}</h4>
+                <h4>${value.call_number}</h4>
+                <h4>${email[0].slice(0,3)}***${email[1]}</h4>
+                <h4>${value.role}</h4>
+                <h4>${value.user_status}</h4>
+                <a href='#'>Lihat Detail...</a>
+            </div>`;
+          }).join("");
+          tablePermintaan.innerHTML = result;
+        }else{
+            if(verif.length === 0) return tablePermintaan.innerHTML = `<p>Tidak Ada Data Terkait ${currentSelectValue}..</p>`;
+          const result = verif.map((value,index) => {
+            const email = value.email.split("@");
+            return `<div class='field-data'>
+                <img src='https://res.cloudinary.com/ddiulakke/image/upload/v1747055039/vecteezy_profile-icon-design-vector_5544718_cje74w.jpg' alt='profil'>
+                <h4>${value.name}</h4>
+                <h4>${value.fullname}</h4>
+                <h4>${email[0].slice(0,3)}***${email[1]}</h4>
+                <h4>${value.identify_type}</h4>
+                <h4>${value.role}</h4>
+                <h4>${value.user_status}</h4>
+                <a href='#'>Lihat Detail...</a>
+            </div>`;
+          }).join("");
+          tablePermintaan.innerHTML = result;
+          document.getElementById('header-text-selection').textContent = currentSelectValue;
+        }
+    }
+
 </script>

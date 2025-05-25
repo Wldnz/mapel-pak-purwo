@@ -43,7 +43,9 @@ class DashboardAdmin extends BaseController{
                 "Aktifitas Anggota" => count($acitivitys->getActivitysByRole()),
                 "Aktifitas Pegawai" => count($acitivitys->getActivitysByRole('staff')),
                 "Aktifitas Admin" => count($acitivitys->getActivitysByRole('admin')),
-            ]
+            ],
+            "permintaan-peminjaman" => $books->getBorrowedBooksByStatus("wait"),
+            "permintaan-verifikasi" => $accounts->getPersonalDataByStatus()
         ]
     ];
 
