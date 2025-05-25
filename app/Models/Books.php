@@ -105,6 +105,31 @@ class Books{
        return $buku;
     }
 
+     public function getBooksByFilter(array $arrs): array{
+        $sql = "SELECT * FROM books ";
+        if(count($arrs ) > 0){
+          $i = 0;
+          $count = count($arrs);
+          foreach($arrs as $key=>$value){
+            if($i == 0 && $i === $count - 1){
+               $sql .= "WHERE $key='$value' OR $key LIKE '%$value%'";
+            }else if($i == 0 && $i < $count - 1){
+               $sql .= "WHERE $key='$value' OR $key LIKE '%$value%' AND ";
+            }else{
+              if($i > 0 && $i < $count - 1){
+                $sql .= "$key='$value' OR $key LIKE '%$value%' AND ";
+              }else{
+                $sql .= "$key='$value' OR $key LIKE '%$value%'";
+              }
+            }
+            $i ++;
+          };
+          $sql .= ";";
+        }
+        $query = $this->db->query($sql);
+       return $query->getResultArray(); 
+    }
+
     public function getAllAuthor(){
       $query = $this->db->query("SELECT author FROM books GROUP BY author;");
       return $query->getResultArray();

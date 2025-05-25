@@ -194,7 +194,7 @@ echo "<script>
                 <h4>${value.identify_type}</h4>
                 <h4>${value.role}</h4>
                 <h4>${value.user_status}</h4>
-                <a href='#'>Lihat Detail...</a>
+                <a href='${location.origin}/admin/management-akun?id=${value.id_user}'>Lihat Detail...</a>
             </div>`;
           }).join("");
           tablePermintaan.innerHTML = result;

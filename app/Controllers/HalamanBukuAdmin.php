@@ -4,7 +4,6 @@ namespace App\Controllers;
 
 use App\Controllers\BaseController;
 use App\Models\Books;
-use App\Models\ClassificationNumbers;
 
 class HalamanBukuAdmin extends BaseController{
     
@@ -13,28 +12,39 @@ class HalamanBukuAdmin extends BaseController{
         "nameFileStyleSheet" => "HalamanBukuAdmin"
     ];
 
-
+    private $books;
     public function __construct() {
-        $books = new Books();
-        $classification_numbers = new ClassificationNumbers();
+        $this->books = new Books();
         
-       $this->data["books"] = $books->getBooks();  
-       $this->data["classification_numbers"] = $classification_numbers->getAll();
-       $this->data["authors"] = $books->getAllAuthor();
     }
 
     public function index(){
 
-        $this->data["currentClassification_numbers"] = $this->request->getGet("classification-number") || 0;
-       $this->data["currentAuthor"] = $this->request->getGet("author") || 0;
+        $title = $this->request->getGet("judul");
+        $author = $this->request->getGet("author");
+        $status = $this->request->getGet("status");
+
+       
+
+        $this->data["authors"] = $this->books->getAllAuthor();
+        $this->data["books"] = $this->books->getBooksByFilter($this->_checkData(["title" => $title, "author" => $author, "status" => $status]));
+
+        $this->data["judul"] = $title;
+        $this->data["currentAuthor"] = $author;
+        $this->data["status"] = $status;
 
         return view("templates/header",$this->data)
         .view("admin/buku");
     }
 
-    private function getParams(){
-        
-        $expectedParams = ["classificitation-number","author","judul"];
-    }
+    private function _checkData(array $data){
+            $result = [];
+            foreach ($data as $key => $value) {
+                if(!empty($value)){
+                    $result[$key] = $value;
+                }
+            }
+            return $result;
+        }
 
 }

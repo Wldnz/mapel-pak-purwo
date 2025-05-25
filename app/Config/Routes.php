@@ -23,3 +23,6 @@ $routes->get('login', [Login::class, 'index']);
 $routes->get('admin/dashboard', [DashboardAdmin::class, 'index']);
 $routes->get('admin/management-buku', [HalamanBukuAdmin::class, 'index']);
 $routes->get('admin/management-akun', [HalamanAkunAdmin::class, 'index']);
+
+$routes->post('admin/verif-akun', [HalamanAkunAdmin::class, 'verifAccount']);
+$routes->post('admin/cancel-verif-akun', [HalamanAkunAdmin::class, 'cancelVerification']);

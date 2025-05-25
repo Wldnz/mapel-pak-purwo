@@ -1,36 +1,209 @@
+h2{
+    font-size: 20px;
+    font-weight: bold;
+    color: var(--warna-2);
+}
+
+button{
+    cursor: pointer;
+}
 
 main{
     width: 100%;
     min-height: 100dvh;
-    padding: 10px;
+    background-color: #DFDFDF;
+    padding: 15px;
 }
 
 .container{
     width: 100%;
+    padding: 10px;
+
+    background-color: white;
+    border-radius: 12px;
+
     display: flex;
     flex-direction: column;
+    gap: 5px;
+}
+
+.container-v2{
+    min-height: 80dvh;
     justify-content: center;
     align-items: center;
 }
 
 table{
-    width: 60px;
-    border: 1px solid #DFDFDF;
+    width: 100%;
+    border-spacing: 0;
+    text-align: center;
+}
+
+tbody > :first-child{
+    padding: 8px;
+    height: 40px;
     background-color: #DFDFDF;
+}
+
+td{
     padding: 10px;
 }
 
-tr{
-    font-size: 14px;
+.find{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 3px 2px;
 }
 
-input{
-    width: 230px;
-    padding: 4px;
-    background: transparent;
+.find > select{
+    width: 200px;
+    padding: 5px;
+}
+
+.find > div{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.find > div > input{
+    width: 250px;
+    padding: 8px;
+    outline: none;
+    border: .1px solid grey;
+    border-top-left-radius: 5px;
+    border-bottom-left-radius: 5px;
+}
+
+.find > div > button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+     padding: 3px;
+    border: .1px solid grey;
+    border-top-right-radius: 5px;
+    border-bottom-right-radius: 5px;
+}
+
+.find > div > button > img{
+    width: 40px;
+    height: 30px;
+}
+
+.add-book{
+    border-radius: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: var(--warna-2);
+    border: none;
+}
+.add-book > img{
+    width: 26.5px;
+    height  : 26.5px;
+}
+
+/*  */
+
+.main-update{
+    display: flex;
+    flex-direction: column;
+    gap: 25px;
+}
+
+.general-data {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+.fieldInput{
+    display: flex;
+    align-items: center;
+flex-wrap: wrap;
+    gap: 10px;
+}
+
+.fieldInput > input{
+    width: 350px;
+    padding: 5px;
+    border-radius: 5px;
+}
+
+.fieldInput > input:focus{
+    outline-color: var(--warna-2);
+}
+
+.fieldInput > select{
+    outline: none;
     border: none;
 }
 
-input:focus{
-    outline: 1px solid;
+.identify-image{
+    width: 400px;
+    height: 300px;
+    object-fit: fill;
 }
+
+.btn-verifikasi{
+    background-color: green;
+    padding: 5px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+.btn-tidak-verifikasi{
+    background-color: red;
+    padding: 5px;
+    font-weight: bold;
+    color: white;
+    border: none;
+    border-radius: 6px;
+}
+
+.modal-image{
+    display: none;
+    width: 100vw;
+    height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0 , .8);
+    padding: 15px;
+}
+
+.modal-image > .content{
+    width: 100vw;
+    height: 100dvh;
+    /* background-color: white; */
+}
+
+.modal-image > .content > img{
+    width: 100vw;
+    height: 50vw;
+    object-fit: contain;
+}
+
+
+.verified{
+    padding: 2px 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    background-color: green;
+    border-radius: 5px;
+}
+
+.not-verified{
+    padding: 2px 5px;
+    font-weight: bold;
+    font-size: 14px;
+    color: white;
+    background-color: red;
+    border-radius: 5px;
+}
+

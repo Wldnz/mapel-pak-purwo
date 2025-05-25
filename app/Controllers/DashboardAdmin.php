@@ -31,12 +31,12 @@ class DashboardAdmin extends BaseController{
                 "Buku Jatuh Tempo" => count($books->getBorrowedBookDueToday()),
             ],
             "Pegawai & Anggota" => [
-                "Total Pegawai" => count($accounts->getAccount('staff')),
+                "Total Pegawai" => count($accounts->getAccounts('staff')),
             ],
             "Anggota" => [
-                "Total Anggota" => count( $accounts->getAccount()),
-                "Anggota Terverifikasi" => count( $accounts->getAccountByVerified()),
-                "Anggota Belum Terverifikasi" => count($accounts->getAccountByVerified('unverified')),
+                "Total Anggota" => count( $accounts->getAccounts()),
+                "Anggota Terverifikasi" => count( $accounts->getAccountsByStatus()),
+                "Anggota Belum Terverifikasi" => count($accounts->getAccountsByStatus('unverified')),
             ],
             "Aktifitas" => [
                 "Total Aktifitas" => count($acitivitys->getActivitys()),
