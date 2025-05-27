@@ -47,12 +47,24 @@ class Books{
 
        return $buku; 
     }
+     public function getBookById(string $id): array{
+      if(empty($id)) return [];
+        $buku = [];
+        $query = $this->db->query("SELECT * FROM books WHERE id='$id'");
+
+       if($query->getNumRows() > 0){
+         $buku = $query->getResultArray();
+       }
+
+       return $buku; 
+    }
 
     public function getBorrowedBooks(): array{
         $buku = [];
         $query = $this->db->query("SELECT bw.*, bc.* FROM borrowed_books as bw 
           INNER JOIN book_copys as bc 
-            ON bw.id_book_copy = bc.id;
+            ON bw.id_book_copy = bc.id 
+            WHERE bw.status = 'borrowed' OR bc.status='borrowed';
         ");
 
        if($query->getNumRows() > 0){
@@ -134,5 +146,58 @@ class Books{
       $query = $this->db->query("SELECT author FROM books GROUP BY author;");
       return $query->getResultArray();
     }
-    
+  
+  public function insertBook(
+    string $isbn_10,
+    string $isbn_13,
+    string $title,
+    string $description,
+    string $author,
+    string $publisher,
+    string $publication_year,
+    string $edition_number,
+    string $total_pages,
+    string $category,
+    string $language,
+    string $classification_number,
+    string $image_url,
+    string $status,
+  ){
+    $result = $this->db->query("INSERT INTO books VALUES(NULL, '$isbn_10', '$isbn_13', '$title', '$description', '$author', '$publisher', '$publication_year', '$edition_number', '$total_pages', '$category', '$language', '". time() ."', '$classification_number', '$image_url', '$status')");
+    if($result){
+      return true;
+    }
+    return false;
+  }
+  public function updateBook(
+    string $id,
+    string $isbn_10,
+    string $isbn_13,
+    string $title,
+    string $description,
+    string $author,
+    string $publisher,
+    string $publication_year,
+    string $edition_number,
+    string $total_pages,
+    string $category,
+    string $language,
+    string $classification_number,
+    string $image_url,
+    string $status,
+  ){
+    $result = $this->db->query("UPDATE books 
+    SET isbn_10='$isbn_10', isbn_13='$isbn_13', 
+      title='$title', description='$description', author='$author', 
+        publisher='$publisher', publication_year='$publication_year', edition_number='$edition_number',
+          total_pages='$total_pages', category='$category', language='$language', clsn_id='$classification_number',
+            image_url='$image_url', status='$status'
+              WHERE id='$id';
+    ");
+    if($result){
+      return true;
+    }
+    return false;
+  }
+
 }

@@ -1,10 +1,12 @@
 <?php
-
 /*
  | --------------------------------------------------------------------
  | asset path
  | --------------------------------------------------------------------
  */
+
+ 
+
 $protocol = "http://";
 if(isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === "on")$protocol = "https://";
 $base_url = $protocol . $_SERVER["HTTP_HOST"] . "/";
@@ -13,7 +15,6 @@ defined('images') || define('images', assets . '/images');
 defined('icons') || define('icons', value: images . '/icons');
 defined('css') || define('css', assets . '/css');
 defined('js') || define('js', assets . '/js');
-
 
 /*
  | --------------------------------------------------------------------

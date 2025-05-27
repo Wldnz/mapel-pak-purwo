@@ -188,10 +188,9 @@ td{
 
 .wrapper{
     display: flex;
-}
-
-.wrapper  > aside{
-    width: 50%;
+    flex-direction: column  ;
+    flex-wrap: wrap;
+    margin-bottom: 15px;
 }
 
 .right{
@@ -202,10 +201,63 @@ td{
 }
 
 .right > input{
-    width: 200px;
+    width: 0;
+    opacity: 0;
+}
+
+.right > label{
+    padding: 5px;
+    color: white;
+    border-radius: 10px;
+    font-weight: bold;
+    background-color: var(--warna-2);
+    cursor: pointer;
+}
+
+.left{
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.field-input > label{
+    width:110px;
+}
+
+.field-input > input{
+    width: 280px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    border: 1px solid;
+    /* outline: none; */
+}
+
+.field-input > textarea{
+    width: 280px;
+    height: 80px;
+    padding: 5px;
 }
 
 aside > img{
     width: 200px;
     height: 200px;
+}
+
+@media screen and (min-width:1000px){
+    .wrapper  > aside{
+        width: 50%;
+    }
+
+   
+
+    .wrapper{
+        flex-direction: row;
+    }
+
+}
+
+@media screen and (max-width:1000px){
+ .container-buku{
+        width: max-content;
+    }
 }

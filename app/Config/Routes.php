@@ -22,9 +22,11 @@ $routes->get('login', [Login::class, 'index']);
 
 $routes->get('admin/dashboard', [DashboardAdmin::class, 'index']);
 $routes->get('admin/management-buku', [HalamanBukuAdmin::class, 'index']);
-$routes->get('admin/management-buku/add-buku', [HalamanBukuAdmin::class, 'addBuku']);
-$routes->get('admin/management-akun', [HalamanAkunAdmin::class, 'index']);
+$routes->post('admin/management-buku', [HalamanBukuAdmin::class, 'updateBook']);
+$routes->get('admin/management-buku/add-book', [HalamanBukuAdmin::class, 'addBookPage']);
+$routes->post('admin/management-buku/add-book', [HalamanBukuAdmin::class, 'addBookPage']);
 
+$routes->get('admin/management-akun', [HalamanAkunAdmin::class, 'index']);
 $routes->post('admin/create-akun', [HalamanAkunAdmin::class, 'createAccount']);
 $routes->post('admin/update-akun', [HalamanAkunAdmin::class, 'updateAccount']);
 

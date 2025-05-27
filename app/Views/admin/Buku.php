@@ -5,7 +5,7 @@
       <div class="container-child">
        <div class="header-container">
          <h2>Data Buku</h2>
-         <button type="submit"><img src="<?= icons ?>/add.svg" alt=""></button>
+         <button type="button" id="add-book"><img src="<?= icons ?>/add.svg" alt=""></button>
        </div>
         <form class="menu-filter">
             <div class="select-option">
@@ -51,7 +51,7 @@
                     <td><?= $book['publisher'] ?></td>
                     <td><?= $book['publication_year'] ?></td>
                     <td class="<?= $book['status'] === "private"? "text-red" : "text-green" ?>"><?= $book['status'] === "private"? "Private" : "Public" ?></td>
-                    <td><a href="#">Lihat Detail</a></td> 
+                    <td><a href="<?= base_url("admin/management-buku?id=".$book["id"]) ?>">Lihat Detail</a></td> 
                 </tr>
                 <?php }} ?>
             </table>
@@ -66,9 +66,5 @@
 </main>
 
 <script>
-    // Array.from(document.querySelector('.select-option').children).forEach(element => {
-    //     element.onchange = (e) => {
-    //         console.log(e.target.value)
-    //     }
-    // });
+    document.querySelector("#add-book").addEventListener("click",() => location.href = "<?= base_url('admin/management-buku/add-book') ?>")
 </script>
