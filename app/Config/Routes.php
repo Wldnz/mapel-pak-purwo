@@ -22,7 +22,11 @@ $routes->get('login', [Login::class, 'index']);
 
 $routes->get('admin/dashboard', [DashboardAdmin::class, 'index']);
 $routes->get('admin/management-buku', [HalamanBukuAdmin::class, 'index']);
+$routes->get('admin/management-buku/add-buku', [HalamanBukuAdmin::class, 'addBuku']);
 $routes->get('admin/management-akun', [HalamanAkunAdmin::class, 'index']);
+
+$routes->post('admin/create-akun', [HalamanAkunAdmin::class, 'createAccount']);
+$routes->post('admin/update-akun', [HalamanAkunAdmin::class, 'updateAccount']);
 
 $routes->post('admin/verif-akun', [HalamanAkunAdmin::class, 'verifAccount']);
 $routes->post('admin/cancel-verif-akun', [HalamanAkunAdmin::class, 'cancelVerification']);

@@ -3,7 +3,10 @@
     <h2>Management Buku</h2>
     <div class="container">
       <div class="container-child">
-        <h2>Data Buku</h2>
+       <div class="header-container">
+         <h2>Data Buku</h2>
+         <button type="submit"><img src="<?= icons ?>/add.svg" alt=""></button>
+       </div>
         <form class="menu-filter">
             <div class="select-option">
                 <select name="status" id="0" >

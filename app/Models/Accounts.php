@@ -80,5 +80,39 @@ class Accounts{
         return false;
        ;
     }
+      public function updateAccount(
+        string $id,
+        string $name,
+        string $fullname,
+        string $email,
+        string $phone,
+        string $role,
+        string $status
+      ){
+        $query = $this->db->query(" UPDATE users
+            SET name='$name', fullname='$fullname', email='$email', phone='$phone', role='$role', status ='$status'
+                WHERE id='$id';;
+        ");
+        if($query){
+             return true;
+        }
+        return false;
+       ;
+    }
+      public function createAccount(
+        string $name,
+        string $fullname,
+        string $email,
+        string $phone,
+      ){
+        $query = $this->db->query("SELECT * FROM users WHERE name='$name'");
+        if($query->getNumRows() == 0){
+            $query = $this->db->query("INSERT INTO users(name, fullname, email, phone, role, status) VALUES('$name','$fullname','$email','$phone','user','unverified')");
+            if($query){
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

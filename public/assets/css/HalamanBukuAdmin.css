@@ -1,3 +1,8 @@
+
+body{
+    min-width: 1000px;
+}
+
 main{
     width: 100%;
     min-height: 100dvh;
@@ -37,6 +42,27 @@ h2{
     font-size: 20px;
     font-weight: bold;
     color: var(--warna-2);
+}
+
+.header-container{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-container > button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 5px;
+    background-color: var(--warna-2);
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+}
+
+.header-container > button:hover{
+    opacity: .8;
 }
 
 .menu-filter{
@@ -144,4 +170,42 @@ td{
 
 .text-green{
     color: green;
+}
+
+.field-input{
+    display: flex;
+    gap: 10px;
+}
+
+.field-input > label > span{
+    color: red;
+    font-weight: bold;
+}
+
+.btn-buat{
+    width: 100%;
+}
+
+.wrapper{
+    display: flex;
+}
+
+.wrapper  > aside{
+    width: 50%;
+}
+
+.right{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.right > input{
+    width: 200px;
+}
+
+aside > img{
+    width: 200px;
+    height: 200px;
 }

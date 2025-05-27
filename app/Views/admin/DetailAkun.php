@@ -1,3 +1,9 @@
+    <style>
+        body{
+            min-width: none;
+        }
+    </style>
+    
     <main class="main-update">
         <?php
 
@@ -10,7 +16,7 @@
             <div class="container">
                 <h2>Data Umum - <?= $account["name"] ?>
                 </h2>
-                <form action="" class="general-data">
+                <form action="update-akun" class="general-data" method="post">
                     <div class="fieldInput">
                         <label for="name">Nama: </label>
                         <input type="text" name="name" id="name" placeholder="Masukkan nama.."
@@ -44,11 +50,20 @@
                     </div>
                     <div class="fieldInput">
                         <label for="status">Status: </label>
-                        <select name="status" id="status">
-                            <option <?= $account["status"] == "verified" ? "value='verified' selected" : "value='verified'" ?>>Terverifikasi</option>
-                            <option <?= $account["status"] == "unverified" ? "value='unverified' selected" : "value='unverified'" ?>>Belum Terverikasi</option>
-                            <option <?= $account["status"] == "inactive" ? "value='inactive' selected" : "value='inactive'" ?>>Tidak Aktif</option>
-                            <option v <?= $account["status"] == "deleted" ? "value='deleted' selected" : "value='deleted'" ?>>Dihapus</option>
+                        <select name="status" id="status" <?= count($personalAccount) == 0 ? "disabled" : "" ?>>
+                            <?php
+                            if ($account["status"] == "verified") { ?>
+                                <option <?= $account["status"] == "verified" ? "value='verified' selected" : "value='verified'" ?>>Terverifikasi</option>
+                                <option <?= $account["status"] == "unverified" ? "value='unverified' selected" : "value='unverified'" ?>>Belum Terverikasi</option>
+                                <option <?= $account["status"] == "inactive" ? "value='inactive' selected" : "value='inactive'" ?>>Tidak Aktif</option>
+                                <option <?= $account["status"] == "deleted" ? "value='deleted' selected" : "value='deleted'" ?>>Dihapus</option>
+                            <?php } else { ?>
+                                <option <?= $account["status"] == "unverified" ? "value='unverified' selected" : "value='unverified'" ?>>Belum Terverikasi</option>
+                                <option <?= $account["status"] == "inactive" ? "value='inactive' selected" : "value='inactive'" ?>>Tidak Aktif</option>
+                                <option <?= $account["status"] == "deleted" ? "value='deleted' selected" : "value='deleted'" ?>>Dihapus</option>
+                            <?php }
+                            ?>
+                            <input type="hidden" name="id" value="<?= $account['id'] ?>">
                         </select>
                     </div>
                     <button type="submit" class="btn">UPDATE</button>
@@ -70,7 +85,7 @@
                         </div>
                         <div class="fieldInput">
                             <label for="role">Tipe Identifikasi: </label>
-                            <select name="role" id="role">
+                            <select name="role" id="role" disabled>
                                 <option value="Kartu Pelajar">Kartu Pelajar</option>
                                 <option value="KTP">KTP</option>
                                 <option value="KIP">KIP</option>
@@ -78,7 +93,7 @@
                         </div>
                         <div class="fieldInput">
                             <label for="status">Status Verifikasi: </label>
-                            <select name="status" id="status">
+                            <select name="status" id="status" disabled>
                                 <option <?= $personalAccount["status"] == "wait" ? "value='wait' selected" : "value='wait'" ?>>Proses</option>
                                 <option <?= $personalAccount["status"] == "success" ? "value='success' selected" : "value='success'" ?>>Berhasil</option>
                                 <option <?= $personalAccount["status"] == "fail" ? "value='fail' selected" : "value='fail'" ?>>Gagal</option>
@@ -88,21 +103,21 @@
                                 <div style="display: flex; flex-wrap:wrap; gap:10px;">
                                     <form action="verif-akun" method="post">
                                         <button type="submit" class="btn-verifikasi">Verifikasi Pengguna</button>
-                                        <input type="hidden" name="id" value="<?=  $personalAccount["id"] ?>">
-                                        <input type="hidden" name="id_user" value="<?=  $personalAccount["id_user"] ?>">
+                                        <input type="hidden" name="id" value="<?= $personalAccount["id"] ?>">
+                                        <input type="hidden" name="id_user" value="<?= $personalAccount["id_user"] ?>">
                                     </form>
                                     <form action="cancel-verif-akun" method="post">
                                         <button type="submit" class="btn-tidak-verifikasi">Gagalkan Verifikasi Pengguna</button>
-                                        <input type="hidden" name="id" value="<?=  $personalAccount["id"] ?>">
-                                        <input type="hidden" name="id_user" value="<?=  $personalAccount["id_user"] ?>">
+                                        <input type="hidden" name="id" value="<?= $personalAccount["id"] ?>">
+                                        <input type="hidden" name="id_user" value="<?= $personalAccount["id_user"] ?>">
                                     </form>
                                 </div>
                             <?php } else if ($personalAccount["status"] === "success") { ?>
                                 <div style="display: flex; flex-wrap:wrap; gap:10px;">
-                                     <form action="cancel-verif-akun" method="post">
+                                    <form action="cancel-verif-akun" method="post">
                                         <button type="submit" class="btn-tidak-verifikasi">Cancel Verifikasi Pengguna</button>
-                                        <input type="hidden" name="id" value="<?=  $personalAccount["id"] ?>">
-                                        <input type="hidden" name="id_user" value="<?=  $personalAccount["id_user"] ?>">
+                                        <input type="hidden" name="id" value="<?= $personalAccount["id"] ?>">
+                                        <input type="hidden" name="id_user" value="<?= $personalAccount["id_user"] ?>">
                                     </form>
                                 </div>
                             <?php } ?>
@@ -110,26 +125,26 @@
                         <img
                             src="<?= $personalAccount["identify_image"] ?>" alt="identifikasi-gambar"
                             class="identify-image">
-                            <button class="btn" onclick="history.back()">Kembali</button>
+                        <button class="btn" onclick="history.back()">Kembali</button>
                         <div class="modal-image" id="modal-image">
                             <div class="content">
-                               <img
-                            src="<?= $personalAccount["identify_image"] ?>" alt="identifikasi-gambar"
-                            class="identify-image">
+                                <img
+                                    src="<?= $personalAccount["identify_image"] ?>" alt="identifikasi-gambar"
+                                    class="identify-image">
                             </div>
                         </div>
                     </div>
-                            </div>
+            </div>
             </div>
         <?php }
         ?>
 
     </main>
-<?php  } ?>
+    <?php  } ?>
 
-<?php
+    <?php
 
-  if(count($personalAccount) != 0) {?>
+    if (count($personalAccount) != 0) { ?>
         <script>
             const modal_image = document.getElementById("modal-image");
             const showModal = document.querySelector(".identify-image");
@@ -140,4 +155,4 @@
                 modal_image.style.display = "block";
             });
         </script>
-  <?php }?>
+    <?php } ?>

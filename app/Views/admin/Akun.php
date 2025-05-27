@@ -53,13 +53,64 @@
     </div>
     </div>
     <div class="modal" id="modal-add-book">
-
+        <form action="create-akun" id="create-akun" method="post">
+            <div class="header-form">
+                <h2>Buat Akun </h2>
+                <button type="button" class="btn-close" id="btn-close">Close</button>
+            </div>
+            <p class="error-message" id="error-message" style="display: none;">Pastikan Password Dan Konfirmasi Sama</p>
+            <div class="fieldInput2">
+                <label for="name">Nama</label>
+                <input type="text" name="name" id="name" minlength="3" required >
+            </div>
+            <div class="fieldInput2">
+                <label for="fullname">Nama Lengakap</label>
+                <input type="text" name="fullname" id="fullname" minlength="3" required >
+            </div>
+            <div class="fieldInput2">
+                <label for="email">Email</label>
+                <input type="email" name="email" id="email" minlength="3" required >
+            </div>
+            <div class="fieldInput2">
+                <label for="phone">Phone</label>
+                <input type="text" inputmode="numeric" name="phone" id="phone" minlength="3" required >
+            </div>
+            <div class="fieldInput2">
+                <label for="password">Password</label>
+                <input type="password" name="password" id="password" minlength="8" required >
+            </div>
+            <div class="fieldInput2">
+                <label for="confirm-password">Konfirmasi Password</label>
+                <input type="password" name="confirm-password" id="confirm-password" minlength="8" required >
+            </div>
+            <button type="submit" class="btn">Buat Akun</button>
+        </form>
     </div>
 </main>
 
 <script defer>
-    const btn_add = document.getElementById("add-akun");
-    btn_add.addEventListener("click",() => {
-        console.log("as");
+    const btn_close = document.getElementById("btn-close");
+    const modal = document.getElementById("modal-add-book");
+    const error_msg = document.getElementById("error-message");
+    const formContainer = document.getElementById("create-akun");
+    let isChange = false;
+    btn_close.addEventListener("click", () => {
+        if (!isChange) {
+            modal.style.display = "none";   
+        }else if(confirm("anda yakin ingin menutup form?")){
+            modal.style.display = "none";   
+        }
     });
+    document.getElementById("add-akun").addEventListener("click", () => {
+        modal.style.display = "flex";
+    });
+    formContainer.addEventListener("change",(e) => isChange=true);
+    formContainer.addEventListener("submit",(e) => submitForm(e));
+    function submitForm(e){
+        if(document.getElementById("confirm-password").value != document.getElementById("password").value){
+            e.preventDefault();
+            error_msg.style.display = "block";
+            error_msg.textContent = "Konfirmasi Password & Password Tidak Sama, Silahkan Coba lagi";
+        }
+    }
 </script>

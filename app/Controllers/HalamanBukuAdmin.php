@@ -36,6 +36,33 @@ class HalamanBukuAdmin extends BaseController{
         return view("templates/header",$this->data)
         .view("admin/buku");
     }
+    public function addBuku(){
+
+        if($this->request->getMethod() === "GET"){
+            return view("templates/header",$this->data)
+            .view("admin/Addbuku");
+        }else{
+            return view("templates/header",$this->data)
+            .view("admin/Addbuku");
+        }
+
+        echo $this->request->getMethod();
+
+        $title = $this->request->getGet("judul");
+        $author = $this->request->getGet("author");
+        $status = $this->request->getGet("status");
+
+       
+
+        $this->data["authors"] = $this->books->getAllAuthor();
+        $this->data["books"] = $this->books->getBooksByFilter($this->_checkData(["title" => $title, "author" => $author, "status" => $status]));
+
+        $this->data["judul"] = $title;
+        $this->data["currentAuthor"] = $author;
+        $this->data["status"] = $status;
+
+        
+    }
 
     private function _checkData(array $data){
             $result = [];

@@ -98,6 +98,80 @@ class HalamanAkunAdmin extends BaseController
         }
 
     }
+    public function updateAccount(){
+        
+        $id = $this->request->getPost("id");
+        $name = $this->request->getPost("name");
+        $fullname = $this->request->getPost("fullname");
+        $email = $this->request->getPost("email");
+        $phone = $this->request->getPost("phone");
+        $role = $this->request->getPost("role");
+        $status = $this->request->getPost("status");
+
+        if(!$id || !$name || !$fullname || !$email || !$phone || !$role || !$status){
+            echo "<script>
+                alert('data yang diberikan tidak lengkapp....');
+                location.href='". base_url("admin/management-akun?id=$id") ."';
+            </script>";
+            return;
+        }
+
+        $result = $this->account->updateAccount(
+            $id,
+            $name,
+            $fullname,
+            $email,
+            $phone,
+            $role,
+            $status
+        );
+        if($result){
+            echo "<script>
+                alert('berhasil update akun - $name');
+                location.href='". base_url("admin/management-akun?id=$id") ."';
+            </script>";
+        }else{
+             echo "<script>
+                alert('telah terjadi kesalahan saat ingin merubah data akun - $name');
+                location.href='". base_url("admin/management-akun?id=$id") ."';
+            </script>";
+        }
+    }
+
+    public function createAccount(){
+
+        $name = $this->request->getPost("name");
+        $fullname = $this->request->getPost("fullname");
+        $email = $this->request->getPost("email");
+        $phone = $this->request->getPost("phone");
+        $password = $this->request->getPost("password");
+        
+        if(!$name || !$fullname || !$email || !$phone){
+            echo "<script>
+                alert('data yang diberikan tidak lengkapp....');
+                location.href='". base_url("admin/management-akun") ."';
+            </script>";
+            return;
+        }
+
+        $result = $this->account->createAccount(
+            $name,
+            $fullname,
+            $email,
+            $phone
+        );
+        if($result){
+            echo "<script>
+                alert('berhasil membuat akun - $name');
+                location.href='". base_url("admin/management-akun") ."';
+            </script>";
+        }else{
+             echo "<script>
+                alert('telah terjadi kesalahan saat ingin membuat akun - $name atau akun dengan nama - $name sudah ada..');
+                location.href='". base_url("admin/management-akun?") ."';
+            </script>";
+        }
+    }
 
     public function view(string $page) {}
 }
