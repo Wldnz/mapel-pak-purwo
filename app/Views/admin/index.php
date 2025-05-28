@@ -169,7 +169,7 @@ echo "<script>
     function setDataPermintaan(currentSelectValue){
         if(currentSelectValue.includes('Peminjaman')){
         if(books.length === 0) return tablePermintaan.innerHTML = `<p>Tidak Ada Data Terkait ${currentSelectValue}..</p>`;
-          const result = books.map((value,index) => {
+          const result = books.map((value,index) => { 
             const email = value.email.split("@");
             return `<div class='field-data'>
                 <img src='${value.image_url}' alt='image'>
@@ -178,7 +178,7 @@ echo "<script>
                 <h4>${email[0].slice(0,3)}***${email[1]}</h4>
                 <h4>${value.role}</h4>
                 <h4>${value.user_status}</h4>
-                <a href='#'>Lihat Detail...</a>
+                <a href='<?= base_url("admin/management-riwayat-peminjaman?id=")?>${value.id_borrowed}'>Lihat Detail...</a>
             </div>`;
           }).join("");
           tablePermintaan.innerHTML = result;

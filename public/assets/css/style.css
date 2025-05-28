@@ -93,7 +93,7 @@ nav a{
     display: none;
     flex-direction: column;
 
-    text-align: center;
+    text-align: start;
     font-size: 13px;
 
     color: #757575;

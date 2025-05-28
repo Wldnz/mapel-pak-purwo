@@ -139,8 +139,15 @@ class HalamanBukuAdmin extends BaseController
     public function detailBookPage()
     {
         $id = $this->request->getGet("id");
+        $id_book_copy = $this->request->getGet("id_book_copy");
         return view("templates/header", $this->data)
-            . view("admin/DetailBuku", ["data" => $this->data["data"] = $this->books->getBookById($id)[0], "clsns" => $this->clsns->getAll()]);
+            . view("admin/DetailBuku", [
+                "data" => $this->data["data"] = $this->books->getBookById($id)[0], 
+            "clsns" => $this->clsns->getAll(), 
+            "bcopys" => $this->books->getBookCopysByIdBook($id),
+            "books" => $this->books->getBooks(),
+            "cr_bc" => $this->books->getBookCopyById($id_book_copy),
+        ]);
     }
 
     public function updateBook()
@@ -183,16 +190,11 @@ class HalamanBukuAdmin extends BaseController
                 $status
             );
             if ($result) {
-                echo "<script>
-                alert('berhasil update buku - $judul');
-                location.href='" . base_url("admin/management-buku?id=$id") . "';
-            </script>";
-            } else {
-                echo "<script>
-                alert('telah terjadi kesalahan saat ingin merubah data buku - $judul');
-                location.href='" . base_url("admin/management-buku?id=$id") . "';
-            </script>";
-            }
+                        $response = [
+                            "message" => "berhasil merubah data buku...",
+                            "isSuccess" => true,
+                        ];
+                    }
         } else {
             $image = $this->request->getFile("image");
             if ($image->isValid() && !$image->hasMoved()) {
@@ -224,9 +226,84 @@ class HalamanBukuAdmin extends BaseController
                         ];
                     }
                 }
-                return $this->response->setJSON($response);
             }
         }
+        return $this->response->setJSON($response);
+    }
+
+    public function createBookCopy(){
+        $id_book = $this->request->getPost("id_book");
+        $id_book_copy = $this->request->getPost("id_book_copy");
+        $call_number = $this->request->getPost("call_number");
+        $status = $this->request->getPost("status_salinan");
+        $physical_condition = $this->request->getPost("physical_condition");
+
+        if(!$id_book || !$id_book_copy || !$call_number || !$status || !$physical_condition){
+            echo "<script>
+                alert('pastikan semua kolom sudah terisi');
+                location.href='". base_url("admin/management-buku?id=$id_book") ."';
+            </script>";
+            return;
+        }
+        $result = $this->books->createBookCopy(
+            $id_book,
+            $id_book_copy,
+            $call_number,
+            $status,
+            $physical_condition
+        );
+
+        if($result){
+             echo "<script>
+                alert('berhasil membuat buku salinan');
+                location.href='". base_url("admin/management-buku?id=$id_book") ."';
+            </script>";
+        }else{
+             echo "<script>
+                alert('tidak berhasil membuat buku salinan');
+                location.href='". base_url("admin/management-buku?id=$id_book") ."';
+            </script>";
+        }
+
+    }
+    function updateBookCopy(){
+        $id_book = $this->request->getPost("id_book");
+        $id_book_copy = $this->request->getPost("id_book_copy");
+        $call_number = $this->request->getPost("call_number");
+        $loan_date = $this->request->getPost("loan_date");
+        $due_date = $this->request->getPost("due_date");
+        $status = $this->request->getPost("status_salinan");
+        $physical_condition = $this->request->getPost("physical_condition");
+
+        if(!$id_book || !$id_book_copy || !$call_number || !$status || !$physical_condition || !$loan_date || !$due_date){
+            echo "<script>
+                alert('pastikan semua kolom sudah terisi');
+                location.href='". base_url("admin/management-buku?id=$id_book") ."';
+            </script>";
+            return;
+        }
+        $result = $this->books->updateBookCopy(
+            $id_book,
+            $id_book_copy,
+            $call_number,
+            $loan_date == $due_date? 0 : $loan_date,
+            $due_date == $loan_date? 0 : $due_date,
+            $status,
+            $physical_condition,
+        );
+
+        if($result){
+             echo "<script>
+                alert('berhasil merubah data buku salinan - $call_number');
+                location.href='". base_url("admin/management-buku?id=$id_book") ."';
+            </script>";
+        }else{
+             echo "<script>
+                alert('tidak berhasil merubah buku salinan - $call_number');
+                location.href='". base_url("admin/management-buku?id=$id_book") ."';
+            </script>";
+        }
+
     }
 
     private function _checkData(array $data)

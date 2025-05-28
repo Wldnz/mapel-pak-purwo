@@ -43,7 +43,7 @@ class Login extends BaseController{
             if($result->getNumRows() > 0){
                 $this->data["succesLogin"] = true;
                 $this->db->close();
-                return redirect('/');
+                return redirect('');
             }else{
                 $this->data["failLogin"] = true;
             }

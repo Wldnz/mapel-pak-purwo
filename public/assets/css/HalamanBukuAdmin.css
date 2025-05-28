@@ -188,8 +188,9 @@ td{
 
 .wrapper{
     display: flex;
-    flex-direction: column  ;
-    flex-wrap: wrap;
+    flex-direction: column ;
+    gap: 50px;
+    /* flex-wrap: wrap; */
     margin-bottom: 15px;
 }
 
@@ -198,6 +199,7 @@ td{
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    gap: 10px;
 }
 
 .right > input{
@@ -238,12 +240,156 @@ td{
     padding: 5px;
 }
 
+#error-message-gambar{
+    display: none;
+    color: red;
+}
+
+.modal{
+    width: 100%;
+    min-height: 100dvh;
+    background-color: rgba(0,0,0 , .8);
+
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: 99;
+
+    display: none;
+    justify-content: center;
+    align-items: center;
+}
+
+.modal > form{
+    width: 100%;
+    max-width: 280px;
+    background-color: white;
+    border-radius: 10px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.modal > form > .header-form{
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+}
+
+.modal > form > .header-form > .btn-close{
+    padding: 6px;
+    background-color: red;
+    color: white;
+    border-radius: 5px;
+    border: none;
+}
+
+.modal > form > .error-message{
+    text-align: center;
+    color: red;
+    font-size: 14px;
+}
+
+.fieldInput2{
+    display: flex;
+    flex-direction: column;
+    gap: 5px;
+}
+
+.fieldInput2 > label{
+    font-size: 14px;
+}
+
+.fieldInput2 > input{
+    width: 100%;
+    padding: 6px;
+    border-radius: 5px;
+}
+
+.fieldInput2 > select{
+    padding: 5px;
+}
+
+.modal > form > button{
+    width: 100%;
+    cursor: pointer;
+}
+
+.btn-close{
+    cursor: pointer;
+    
+}
+
+.peminjaman-container{
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+#gambar-buku{
+    width: 400px;
+    height: 350px;
+}
+
+.modal-image{
+    display: none;
+    width: 100vw;
+    height: 100dvh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    background-color: rgba(0,0,0 , .8);
+    padding: 15px;
+    z-index: 89;
+}
+
+.modal-image > .content{
+    width: 100vw;
+    height: 100dvh;
+    /* background-color: white; */
+}
+
+.modal-image > .content > img{
+    width: 100vw;
+    height: 50vw;
+    object-fit: contain;
+}
+
+.child-2{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.child-3 {
+    display: flex;
+    gap: 5px;
+}
+
+.child-3 > form >  button{
+    background-color: green;
+    color: white;
+    border-radius: 8px;
+    border: none;
+    padding: 8px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+}
+
+.child-3 > :nth-child(2) > button{
+    background-color: red;
+}
+
 aside > img{
     width: 200px;
     height: 200px;
 }
 
-@media screen and (min-width:1000px){
+@media screen and (min-width:400px){
     .wrapper  > aside{
         width: 50%;
     }
@@ -252,12 +398,18 @@ aside > img{
 
     .wrapper{
         flex-direction: row;
+        gap: 10px;
     }
 
 }
 
-@media screen and (max-width:1000px){
+@media screen and (max-width:400px){
  .container-buku{
         width: max-content;
+        gap: 20px;
+    }
+    #gambar-buku{
+        width: 280px;
+        height: 280px;
     }
 }

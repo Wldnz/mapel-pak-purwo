@@ -30,6 +30,7 @@
                         <div class="option-menu">
                             <a href="<?= base_url('admin/management-buku')?>">Management Buku</a>
                             <a href="<?= base_url('admin/management-akun')?>">Management Akun</a>
+                            <a href="<?= base_url('admin/management-riwayat-peminjaman')?>">Management Riwayat</a>
                         </div>
                     </li>
                     <li><a href="<?= base_url('bantuan') ?>">Bantuan</a></li>
@@ -43,7 +44,7 @@
                     <img src="https://res.cloudinary.com/ddiulakke/image/upload/v1747055039/vecteezy_profile-icon-design-vector_5544718_cje74w.jpg" alt="profile-image">
                     <div class="profile-menu">
                         <div class="">
-                            <a href="">Log out</a>
+                            <a href="<?= base_url("/login") ?>">Log out</a>
                             <!-- <a href="">Log out</a> -->
                         </div>
                     </div>

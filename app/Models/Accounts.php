@@ -28,6 +28,10 @@ class Accounts{
         $query = $this->db->query("SELECT id, name, fullname, email, phone, role, status FROM users WHERE status='$status'");
         return $query->getResultArray();
     }
+    public function getMembersVerified(){
+        $query = $this->db->query("SELECT id, name, fullname, email, phone, role, status FROM users WHERE status='verified' AND role='user'");
+        return $query->getResultArray();
+    }
     public function getPersonalDataByStatus(string $status = 'wait'){
         $query = $this->db->query("SELECT 
             pa.*, u.name, u.fullname, u.email, u.phone, u.status as user_status, u.role

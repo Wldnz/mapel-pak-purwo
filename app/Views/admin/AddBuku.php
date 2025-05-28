@@ -1,6 +1,11 @@
 <style>
-    body{
-        min-width: 300px;
+    @media screen and (max-width:400px) {
+        body {
+            min-width: max-content;
+        }
+        .container {
+            width: max-content;
+        };
     }
 </style>
 
@@ -29,7 +34,7 @@
                     </div>
                     <div class="field-input">
                         <label for="author">Penulis<span>*</span></label>
-                        <input type="text" name="author" id="author" placeholder="Masukkan penulis.." minlength="3" maxlength="180" required value="<?= $author?>">
+                        <input type="text" name="author" id="author" placeholder="Masukkan penulis.." minlength="3" maxlength="180" required value="<?= $author ?>">
                     </div>
                     <div class="field-input">
                         <label for="publisher">Penerbit<span>*</span></label>
@@ -37,7 +42,7 @@
                     </div>
                     <div class="field-input">
                         <label for="publication_year">Tahun Diterbitkan<span>*</span></label>
-                        <input type="number" name="publication_year" id="publication_year" placeholder="Masukkan penulis.." value="<?= $publication_year? $publication_year : date("Y") ?>" minlength="4" maxlength="4" required>
+                        <input type="number" name="publication_year" id="publication_year" placeholder="Masukkan penulis.." value="<?= $publication_year ? $publication_year : date("Y") ?>" minlength="4" maxlength="4" required>
                     </div>
                     <div class="field-input">
                         <label for="edition_number">Buku Edisi<span>*</span></label>
@@ -45,7 +50,7 @@
                     </div>
                     <div class="field-input">
                         <label for="total_pages">Total Halaman<span>*</span></label>
-                        <input type="number" name="total_pages" id="total_pages" placeholder="Masukkan Total Halaman.." minlength="3" maxlength="180" value="<?= $total_pages? $total_pages : 0 ?>" required>
+                        <input type="number" name="total_pages" id="total_pages" placeholder="Masukkan Total Halaman.." minlength="3" maxlength="180" value="<?= $total_pages ? $total_pages : 0 ?>" required>
                     </div>
                     <div class="field-input">
                         <label for="category">Kategori<span>*</span></label>
@@ -62,8 +67,8 @@
                         <label for="classification_number">Nomor Klasifikasi<span>*</span></label>
                         <select name="classification_number" id="classification_number">
                             <?php
-                                foreach($clsns as $clsn){?>
-                                    <option value="<?= $clsn["id"] ?>" <?= $classification_number == $clsn["id"]? "selected" : "" ?>><?= $clsn["classification"] ?> </option>
+                            foreach ($clsns as $clsn) { ?>
+                                <option value="<?= $clsn["id"] ?>" <?= $classification_number == $clsn["id"] ? "selected" : "" ?>><?= $clsn["classification"] ?> </option>
                             <?php }
                             ?>
                         </select>
@@ -71,19 +76,21 @@
                     <div class="field-input">
                         <label for="status">Status Buku<span>*</span></label>
                         <select name="status" id="status">
-                            <option value="private" <?=  $status == "private"? "selected" : "" ?>>Sembunyikan</option>
-                            <option value="public" <?=  $status == "public"? "selected" : "" ?>>Terlihat</option>
+                            <option value="private" <?= $status == "private" ? "selected" : "" ?>>Sembunyikan</option>
+                            <option value="public" <?= $status == "public" ? "selected" : "" ?>>Terlihat</option>
                         </select>
                     </div>
                 </aside>
                 <aside class="right">
                     <img src="<?= images ?>/default-book.png" alt="image-buku" id="gambar-buku">
-                    <span class="">Format Gambar Tidak Didukung</span>
+                    <span class="" id="error-message-gambar">Format Gambar Tidak Didukung</span>
                     <label for="input-image">Uploud Images</label>
                     <input type="file" accept="image/jpeg, image/png" name="input-image" id="input-image">
                 </aside>
             </div>
             <button type="submit" class="btn btn-buat">Buat Buku</button>
+            <div style="height: 10px;"></div>
+            <button type="button" class="btn btn-buat" onclick="history.back()">Kembali</button>
         </form>
     </div>
 </main>
@@ -91,34 +98,40 @@
 <script>
     const image_input = document.getElementById("input-image");
     const formBook = document.getElementById("form-submit");
+    const error_message = document.getElementById("error-message-gambar");
     let isValidImage = false;
     let fileImage = null;
-    image_input.addEventListener("change",(e) => {
+    let isSend = false;
+    image_input.addEventListener("change", (e) => {
         const file = e.target.files[0];
-        if(file && checkImageIsSupportedFormat(file) && file.size <= 2500000){
+        if (file && checkImageIsSupportedFormat(file) && file.size <= 2500000) {
             isValidImage = true;
             fileImage = file;
             setImage(file);
+             error_message.style.display = "none";
             return;
         }
+        error_message.style.display = "block";
+        error_message.textContent = "Gambar yang diberikan tidak didukung dan Ukuran gambar maksimal 2,5MB";
         isValidImage = false;
         alert("Gambar yang diberikan tidak didukung dan Ukuran gambar maksimal 2,5MB");
     });
 
-    formBook.addEventListener("submit", async(e) => {
+    formBook.addEventListener("submit", async (e) => {
         e.preventDefault();
-        if(isValidImage){
+        if (isValidImage && !isSend) {
             let formData = new FormData();
-            for(let i =0; i< 13; i++){
-                formData.append(e.target[i].getAttribute("name"),e.target[i].value);
+            for (let i = 0; i < 13; i++) {
+                formData.append(e.target[i].getAttribute("name"), e.target[i].value);
             }
-            formData.append("image",fileImage);
-            const result = await (await fetch("",{
-                    method : "POST",
-                    body : formData
-                })).json();
+            formData.append("image", fileImage);
+            isSend = true;
+            const result = await (await fetch("", {
+                method: "POST",
+                body: formData
+            })).json();
             alert(result.message);
-            if(result.isSuccess){
+            if (result.isSuccess) {
                 location.href = "<?= base_url("admin/management-buku") ?>";
             }
             return;
@@ -126,17 +139,17 @@
         alert("required image...");
     });
 
-    
 
-    function setImage(file){
+
+    function setImage(file) {
         const image_url = URL.createObjectURL(file);
         document.getElementById("gambar-buku").src = image_url;
     }
 
-    function checkImageIsSupportedFormat(file){
-        let expectedFormats = ["png","jpeg","jpg"];
-        for(format in expectedFormats){
-            if(file.type.includes(expectedFormats[format])){
+    function checkImageIsSupportedFormat(file) {
+        let expectedFormats = ["png", "jpeg", "jpg"];
+        for (format in expectedFormats) {
+            if (file.type.includes(expectedFormats[format])) {
                 return true;
             }
         }
