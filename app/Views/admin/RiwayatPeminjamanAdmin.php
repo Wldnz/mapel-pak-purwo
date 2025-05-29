@@ -8,15 +8,25 @@
             <form class="menu-filter">
                 <div class="select-option">
                     <select name="status" id="0">
-                        <option value="">Semua Status</option>
-                       
+                        <option value="">Semua Status Peminjaman</option>
+                        <option value="wait" <?= $status == "wait" ? "selected" : ""  ?>>Menunggu</option>
+                        <option value="borrowed" <?= $status == "borrowed" ? "selected" : ""  ?>>Dipinjam</option>
+                        <option value="returned" <?= $status == "returned" ? "selected" : ""  ?>>Dikembalikan</option>
+                        <option value="fail" <?= $status == "fail" ? "selected" : ""  ?>>Gagal</option>
                     </select>
-                    <select name="author" id="author-option">
-                        <option value="">Semua Penulis</option>
+                    <select name="member-name" id="member-option">
+                        <option value="">Semua Anggota</option>
+                            <?php
+                    if(count($userv) > 0){
+                        foreach($userv as $user){ ?>
+                            <option value="<?= $user["fullname"] ?>" <?= $user["fullname"] == $fullname ? "selected" : ""  ?> ><?= $user["fullname"] ?></option>
+                        <?php }
+                    }
+                ?>
                     </select>
                 </div>
                 <div class="search">
-                    <input type="search" name="judul" id="search-judul" placeholder="Cari Judul Disini..." value="  ">
+                    <input type="search" name="title" id="search-title" placeholder="Cari Judul Buku Disini..." value="<?=  $judul ?>">
                     <button type="submit"><img src="<?= icons ?>/search.svg" alt=""></button>
                 </div>
             </form>
@@ -37,9 +47,12 @@
                             echo "<td colspan='7'>Tidak dapat menemukan data peminjaman....</td>";
                         }else{
                             foreach($bws as $bw){ 
+                                $message = $bw["status"] == "fail"? "Gagal" : "Dikembalikan";
                                 $color = $bw["status"] == "fail"? "red" : "green";
-                                if($bw["status"] == "wait"){
-                                    $color = "yellow";
+                                if($bw["status"] == "borrowed"){
+                                    $message = "Dipinjam";
+                                }else if($bw["status"] == 'wait'){
+                                    $color = "darkgoldenrod";
                                 }
                             ?>
                             <tr>
@@ -49,7 +62,9 @@
                                 <td><?= $bw["book_condition"] ?></td>
                                 <td><?= !$bw["borrowed_at"]? "-" : date("d-m-Y",$bw["borrowed_at"] / 1000) ?></td>
                                 <td><?= !$bw["return_at"]? "-" : date("d-m-Y",timestamp: $bw["return_at"] / 1000) ?></td>
-                                <td style="color: <?= $color ?>;"><?= $bw["status"] ?></td>
+                                <td>
+                                    <span style="padding:5px; border-radius:8px;    text-transform: capitalize;  color:white; font-weight: bold; background-color:  <?= $color ?> ;"><?= $message ?></span>
+                                </td>
                                 <td><a href="<?= base_url("admin/management-riwayat-peminjaman?id=".$bw["id_borrowed"]) ?>">Lihat Detail...</a></td>
                             </tr>
                         <?php }

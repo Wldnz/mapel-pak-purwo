@@ -24,9 +24,59 @@ class RiwayatPeminjamanAdmin extends BaseController
     public function index()
     {
         if ($this->request->getGet("id")) return $this->detail();
-        $this->data["bws"] = $this->books->getBorrowedBooks();
+        $fullname = $this->request->getGet("member-name");
+        $title = $this->request->getGet("title");
+        $status = $this->request->getGet("status");
+        $listBuku = $this->books->getBorrowedBooks();
+        $listBukuFilter = $listBuku;
         $this->data["books"] = $this->books->getReadyBooks();
         $this->data["userv"] = $this->account->getMembersVerified();
+        $this->data["fullname"] = $fullname;
+        $this->data["judul"] = $title;
+        $this->data["status"] = $status;
+
+        if($fullname || $title ||  $status){
+             $listBukuFilter = [];
+        }
+
+        if($fullname &&  $title && $status){
+            foreach($listBuku as $bw){
+                if($bw["fullname"] == $fullname && $bw["status"] == $status && str_contains(strtolower($bw["title"]), strtolower($title))){
+                    array_push($listBukuFilter,$bw);
+                }
+            }
+        }else if($fullname &&  $title){
+            foreach($listBuku as $bw){
+                if($bw["fullname"] == $fullname && str_contains(strtolower($bw["title"]), strtolower($title))){
+                    array_push($listBukuFilter,$bw);
+                }
+            }
+        }else if($fullname &&  $status){
+            foreach($listBuku as $bw){
+                if($bw["fullname"] == $fullname && $bw["status"] == $status){
+                    array_push($listBukuFilter,$bw);
+                }
+            }
+        }else if($title &&  $status){
+            foreach($listBuku as $bw){
+                if(str_contains(strtolower($bw["title"]), $title) && $bw["status"] == $status){
+                    array_push($listBukuFilter,$bw);
+                }
+            }
+        }else if($title){
+             foreach($listBuku as $bw){
+                if(str_contains(strtolower($bw["title"]), strtolower($title))){
+                    array_push($listBukuFilter,$bw);
+                }
+            }
+        }else{
+            foreach($listBuku as $bw){
+               if($bw["fullname"] == $fullname || $bw["status"] == $status){
+                   array_push($listBukuFilter,$bw);
+               }
+           }
+        }
+        $this->data["bws"] = $listBukuFilter;
         return view("templates/header", $this->data)
             . view("admin/RiwayatPeminjamanAdmin");
     }

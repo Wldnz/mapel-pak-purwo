@@ -7,10 +7,13 @@
 <?php
 if (!isset($peminjaman) || empty($peminjaman)) {
 } else {
+    $message = $peminjaman["borrow_status"] == "fail" ? "Gagal" : "Dikembalikan";
     $color = $peminjaman["borrow_status"] == "fail" ? "red" : "green";
-    if ($peminjaman["borrow_status"] == "wait") {
-        $color = "yellow";
-    } ?>
+     if($peminjaman["status"] == "borrowed"){
+                                    $message = "Dipinjam";
+                                }else if($peminjaman["status"] == 'wait'){
+                                    $color = "darkgoldenrod";
+                                } ?>
     <main>
         <div class="container">
             <div class="container-child">
@@ -43,7 +46,7 @@ if (!isset($peminjaman) || empty($peminjaman)) {
                 </div>
                 <div class="field-input">
                     <label for="status">Status Peminjaman</label>
-                    <input style="color:<?= $color ?>; font-weight:bold;" type="text" name="status" value="<?= $peminjaman["borrow_status"] ?>" readonly>
+                    <input style="color:<?= $color ?>; font-weight:bold;" type="text" name="status" value="<?= $message ?>" readonly>
                 </div>
             </div>
         </div>
@@ -101,10 +104,10 @@ if (!isset($peminjaman) || empty($peminjaman)) {
                     if ($peminjaman["borrow_status"] == "wait") { ?>
                         <form action="<?= base_url("admin/management-riwayat-peminjaman/accept") ?>" method="post"> <button type="submit" name="id_borrowed" value="<?= $peminjaman["id"] ?>" id="terima-request">Terima Request</button></form>
                         <form action="<?= base_url("admin/management-riwayat-peminjaman/cancel") ?>" method="post"> <button type="submit" name="id_borrowed" value="<?= $peminjaman["id"] ?>" id="tolak-request">Tolak Request</button></form>
-                        <?php } else if ($peminjaman["borrow_status"] == "fail") { ?>
-                            <form action="<?= base_url("admin/management-riwayat-peminjaman/accept") ?>" method="post"> <button type="submit" name="id_borrowed" value="<?= $peminjaman["id"] ?>" id="terima-request">Terima Request</button></form>
-                            <div></div>
-                    <?php } else if($peminjaman["borrow_status"] == "borrow") { ?>
+                    <?php } else if ($peminjaman["borrow_status"] == "fail") { ?>
+                        <form action="<?= base_url("admin/management-riwayat-peminjaman/accept") ?>" method="post"> <button type="submit" name="id_borrowed" value="<?= $peminjaman["id"] ?>" id="terima-request">Terima Request</button></form>
+                        <div></div>
+                    <?php } else if ($peminjaman["borrow_status"] == "borrow") { ?>
                         <form action="<?= base_url("admin/management-riwayat-peminjaman/return") ?>" method="post"> <button type="submit" name="id_borrowed" value="<?= $peminjaman["id"] ?>" id="tolak-request">Buku Dikembalikan</button></form>
                         <form action="<?= base_url("admin/management-riwayat-peminjaman/cancel") ?>" method="post"> <button type="submit" name="id_borrowed" value="<?= $peminjaman["id"] ?>" id="tolak-request">Tolak Request</button></form>
                     <?php }

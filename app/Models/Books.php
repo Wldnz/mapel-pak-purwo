@@ -18,17 +18,10 @@ class Books
     // $this->date = new Datetime();
   }
 
-  public function getBooks(): array
+  public function getBooks(int $limit = 5): array
   {
-    $buku = [];
-    $query = $this->db->query("SELECT * FROM books");
-
-
-    if ($query->getNumRows() > 0) {
-      $buku = $query->getResultArray();
-    }
-
-    return $buku;
+    $query = $this->db->query("SELECT * FROM books LIMIT $limit");
+    return $query->getResultArray();
   }
   public function getRecentlyBooks(): array
   {

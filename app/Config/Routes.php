@@ -8,6 +8,7 @@ use App\Controllers\Login;
 use App\Controllers\DashboardAdmin;
 use App\Controllers\HalamanAkunAdmin;
 use App\Controllers\HalamanBukuAdmin;
+use App\Controllers\HalamanProfile;
 
 /**
  * @var RouteCollection $routes
@@ -15,13 +16,17 @@ use App\Controllers\HalamanBukuAdmin;
 $routes->get('/', [Home::class, 'index']);
 
 
+$routes->get('register', [Login::class, 'register']);
 $routes->get('login', [Login::class, 'index']);
 $routes->post('login', [Login::class, 'login']);
+$routes->post('clear-session', [Login::class, 'clearSession']);
 
 $routes->get('pages', [Pages::class, 'index']);
 $routes->get('login', [Login::class, 'index']);
 
 $routes->get('admin/dashboard', [DashboardAdmin::class, 'index']);
+$routes->get('admin/profile', [HalamanProfile::class, 'index']);
+$routes->get('admin/laporan', [RiwayatPeminjamanAdmin::class, 'index']);
 $routes->get('admin/management-buku', [HalamanBukuAdmin::class, 'index']);
 $routes->post('admin/management-buku', [HalamanBukuAdmin::class, 'updateBook']);
 $routes->get('admin/management-buku/add-book', [HalamanBukuAdmin::class, 'addBookPage']);

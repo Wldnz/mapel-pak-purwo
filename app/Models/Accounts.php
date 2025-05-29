@@ -3,11 +3,20 @@
 namespace App\Models;
 class Accounts{
     private $db;
+    private $account;
 
     public function __construct(){
         $this->db = db_connect();
+        $this->account = $this->db->table("users");
     }
 
+    public function login(
+        string $username,
+        string $password,
+    ){
+        $result = $this->account->where("name", $username)->where("password", md5($password))->get()->getResultArray();
+        return $result;
+    }
     public function getAll(){
         $query = $this->db->query("SELECT id, name, fullname, email, phone, role, status FROM users");
         return $query->getResultArray();

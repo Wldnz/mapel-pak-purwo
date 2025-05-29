@@ -70,7 +70,7 @@
             <button type="button" class="btn btn-disabled" id="btn-login">Masuk</button>
             <div class="blm-punya-akun">
                 <p>Belum Punya Akun?</p>
-                <a href="#">Daftar Disini...</a>
+                <a href="<?= base_url("register") ?>">Daftar Disini...</a>
             </div>
         </div>
     </form>
