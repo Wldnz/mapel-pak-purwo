@@ -44,8 +44,8 @@
                         <label for="role">Role: </label>
                         <select name="role" id="role">
                             <?php  
-                                $account = session()->get("account");
-                                if($account["role"] == "admin"){ ?>
+                                $accountUser = session()->get("account");
+                                if($accountUser["role"] == "admin"){ ?>
                                     <option <?= $account["role"] == "staff" ? "value='staff' selected" : "value='staff'" ?>>Pegawai</option>
                                     <option <?= $account["role"] == "admin" ? "value='admin' selected" : "value='admin'" ?>>Admin</option>
                                     <?php } ?> 

@@ -52,6 +52,7 @@
                                 if($bw["status"] == "borrowed"){
                                     $message = "Dipinjam";
                                 }else if($bw["status"] == 'wait'){
+                                    $message = "Menunggu";
                                     $color = "darkgoldenrod";
                                 }
                             ?>

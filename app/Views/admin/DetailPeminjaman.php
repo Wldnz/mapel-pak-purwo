@@ -9,11 +9,12 @@ if (!isset($peminjaman) || empty($peminjaman)) {
 } else {
     $message = $peminjaman["borrow_status"] == "fail" ? "Gagal" : "Dikembalikan";
     $color = $peminjaman["borrow_status"] == "fail" ? "red" : "green";
-     if($peminjaman["status"] == "borrowed"){
-                                    $message = "Dipinjam";
-                                }else if($peminjaman["status"] == 'wait'){
-                                    $color = "darkgoldenrod";
-                                } ?>
+    if ($peminjaman["status"] == "borrowed") {
+        $message = "Dipinjam";
+    } else if ($peminjaman["status"] == 'wait') {
+        $message = "Menunggu";
+        $color = "darkgoldenrod";
+    } ?>
     <main>
         <div class="container">
             <div class="container-child">
