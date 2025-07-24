@@ -1,0 +1,6 @@
+=====
+nama=Wildan
+umur=17
+jenis_kelamin=Laki Laki
+minat_jurusan=Rekayasa Perangkat Lunak
+=====
